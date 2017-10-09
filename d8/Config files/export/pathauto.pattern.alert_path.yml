@@ -1,0 +1,22 @@
+uuid: 72fb44a6-926b-4b98-a3e7-16dde9b470f7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: alert_path
+label: 'Alert Path'
+type: 'canonical_entities:node'
+pattern: 'alerts/[node:title]'
+selection_criteria:
+  92767871-cf44-4742-9880-3db1b835d213:
+    id: node_type
+    bundles:
+      alert: alert
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 92767871-cf44-4742-9880-3db1b835d213
+selection_logic: and
+weight: -5
+relationships: {  }

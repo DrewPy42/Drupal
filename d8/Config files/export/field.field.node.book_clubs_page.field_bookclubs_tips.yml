@@ -1,0 +1,22 @@
+uuid: b9b82e2a-6d4a-42e2-a91c-2f64ef1b09fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bookclubs_tips
+    - node.type.book_clubs_page
+  module:
+    - text
+id: node.book_clubs_page.field_bookclubs_tips
+field_name: field_bookclubs_tips
+entity_type: node
+bundle: book_clubs_page
+label: Tips
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

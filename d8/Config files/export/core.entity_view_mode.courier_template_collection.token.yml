@@ -1,0 +1,10 @@
+uuid: 70b4f708-572d-4231-a065-f511d18e18d6
+langcode: en
+status: true
+dependencies:
+  module:
+    - courier
+id: courier_template_collection.token
+label: Token
+targetEntityType: courier_template_collection
+cache: true

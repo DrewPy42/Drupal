@@ -1,0 +1,68 @@
+uuid: 5ea6f2ef-9784-4f26-a58e-fa2d3ca3cb9d
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+id: upgrade_d7_node_board_member
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: d7
+label: 'Nodes (Board Member)'
+source:
+  plugin: d7_node
+  node_type: board_member
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_board_portrait:
+    plugin: iterator
+    source: field_boardmember_portrait
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_board_position:
+    plugin: iterator
+    source: field_boardmember_position
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_board_term:
+    plugin: fix_date_no_time
+    source: field_boardmember_term
+  field_board_is_officer: field_boardmember_is_officer
+  'path/pathauto': 
+    plugin: default_value
+    default_value: 0 # Disable pathauto.
+  alias: alias
+destination:
+  plugin: 'entity:node'
+  default_bundle: board_member
+migration_dependencies:
+  required:
+    - upgrade_d7_custom_user

@@ -1,0 +1,52 @@
+uuid: a26d908d-77ab-4239-d6b3-f7ec775d1002
+id: upgrade_d7_custom_user
+label: Custom user migration
+migration_group: d7
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+source:
+  plugin: custom_user
+process:
+  uid: uid
+  name: name
+  pass: pass
+  mail: mail
+  status: status
+  created: created
+  changed: changed
+  access: access
+  login: login
+  timezone: timezone
+  langcode:
+    plugin: default_value
+    default_value: en
+  init: init
+  field_user_first_name: first_name
+  field_user_last_name: last_name
+  user_picture: user_image
+  field_user_hover_picture: hover_image
+  field_user_on_about_us: about_us
+  field_user_library_administrator: library_admin
+  field_user_favorite_animal: animal_image
+  field_user_favorite_animal_text: animal_text
+  field_user_position: position_text
+  field_user_bibliocommons: profile_link
+  field_user_fun_fact: fun_fact
+  field_user_currently_reading: current_read_link
+  field_user_favorite_read: favorite_read_link
+  field_user_location:
+    plugin: location_convert
+    source: field_useracct_locnoderef
+  field_user_department: 
+    plugin: iterator
+    source: field_useracct_department
+    process:
+      target_id: tid
+  field_user_branchmanager: manager_types
+  field_user_phone: user_phone
+destination:
+  plugin: entity:user

@@ -1,0 +1,9 @@
+uuid: 2ce9aafa-06b7-4f5b-b174-1bb563874f21
+langcode: en
+status: true
+dependencies: {  }
+name: 'Alert Types'
+vid: alert_types
+description: 'Types of Alerts'
+hierarchy: 0
+weight: 0

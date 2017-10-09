@@ -1,0 +1,89 @@
+uuid: e225e7ef-1d88-4b50-ad93-2a6eedaadba4
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_makerspace
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Makerspace)'
+source:
+  plugin: d7_node
+  node_type: makerspace
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_makerspace_block: field_makerspace_block
+  field_makerspace_images:
+    plugin: iterator
+    source: field_makerspace_images
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_makerspace_intro:
+    plugin: iterator
+    source: field_makerspace_intro
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_makerspace_logo:
+    plugin: iterator
+    source: field_makerspace_logo
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_makerspace_video:
+    plugin: iterator
+    source: field_makerspace_video
+    process:
+      value: video_url
+  field_image_with_caption: field_image_with_caption
+destination:
+  plugin: 'entity:node'
+  default_bundle: makerspace
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance
+    - upgrade_d6_filter_format
+    - upgrade_d7_filter_format

@@ -1,0 +1,19 @@
+uuid: ae15e203-00f2-4e5f-8529-188e23aaeb22
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_bookclubs_tips
+field_name: field_bookclubs_tips
+entity_type: node
+type: text_with_summary
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

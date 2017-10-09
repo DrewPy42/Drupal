@@ -1,0 +1,28 @@
+uuid: 3fe4bd05-aa05-481e-904d-433f6b5011e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.book_clubs_page.body
+    - node.type.book_clubs_page
+  module:
+    - text
+    - user
+id: node.book_clubs_page.teaser
+targetEntityType: node
+bundle: book_clubs_page
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

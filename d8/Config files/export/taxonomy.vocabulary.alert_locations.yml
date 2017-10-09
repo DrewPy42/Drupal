@@ -1,0 +1,9 @@
+uuid: 941dc4af-f400-4cb3-95a1-8d78fe1f373c
+langcode: en
+status: true
+dependencies: {  }
+name: 'Alert Locations'
+vid: alert_locations
+description: 'Sections where alerts appear'
+hierarchy: 0
+weight: 0

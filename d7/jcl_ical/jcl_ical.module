@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * The JCL iCal module provides iCal export capabilities for Events
+ * This requires the new event structure to be in place
+ */
+
+
+require('jcl_ical_core.inc');
+/**
+* Implements hook_menu
+*/
+function jcl_ical_menu() {
+	$items = array();
+	$items['ical/%'] = array(
+		'title' => 'iCal file', 
+		'page callback' => '_jcl_ical', 
+		'page arguments' => array(1),
+		'access arguments' => array('access content'),
+  	);
+  	return $items;
+}
+

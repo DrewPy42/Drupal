@@ -1,0 +1,7 @@
+name = JCL Breadcrumb
+description = Provides a plug-and-play block to be embedded in your pages, typically at some place near the page's header.
+configure = admin/config/user-interface/jcl-breadcrumb
+dependencies[] = pathauto
+package = Johnson County Library
+core = 7.x
+

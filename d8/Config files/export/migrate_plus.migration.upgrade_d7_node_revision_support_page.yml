@@ -1,0 +1,154 @@
+uuid: 25218648-f3b3-4e3c-9289-3934f7bdc7f6
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_revision_support_page
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Node revisions (Support Page)'
+source:
+  plugin: d7_node_revision
+  node_type: support_page
+process:
+  nid: nid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_support_subsection: field_support_subsection
+  field_featured_image:
+    plugin: iterator
+    source: field_featured_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_banner_html:
+    plugin: iterator
+    source: field_banner_html
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+destination:
+  plugin: 'entity_revision:node'
+  default_bundle: support_page
+migration_dependencies:
+  required:
+    61: upgrade_d7_node_6by6_page
+    62: upgrade_d7_node_6by6_pdf
+    63: upgrade_d7_node_6by6_skill_page
+    64: upgrade_d7_node_6by6_space
+    65: upgrade_d7_node_about_us_document
+    66: upgrade_d7_node_about_us_page
+    67: upgrade_d7_node_alert
+    68: upgrade_d7_node_annual_report
+    69: upgrade_d7_node_arm_page
+    70: upgrade_d7_node_bibliocommons_json_feed
+    71: upgrade_d7_node_bibliocommons_json_item
+    72: upgrade_d7_node_bibliocommons_recent_books_feed
+    73: upgrade_d7_node_bibliocommons_user_content_feed
+    74: upgrade_d7_node_birth_to_6_book_list
+    75: upgrade_d7_node_birth_to_6_home
+    76: upgrade_d7_node_board_bundle
+    77: upgrade_d7_node_board_member
+    78: upgrade_d7_node_book_clubs_page
+    79: upgrade_d7_node_calendar_event
+    80: upgrade_d7_node_calendar_events_feed
+    81: upgrade_d7_node_cbu_updates
+    82: upgrade_d7_node_collapsible_menu
+    83: upgrade_d7_node_community_engagement_post
+    84: upgrade_d7_node_corinth_storytime_blog_post
+    85: upgrade_d7_node_corinth_storytime_page
+    86: upgrade_d7_node_director_blog_post
+    87: upgrade_d7_node_elementia_page
+    88: upgrade_d7_node_elibrary_guide
+    89: upgrade_d7_node_elibrary_quick_guide
+    90: upgrade_d7_node_elibrary_resource
+    91: upgrade_d7_node_error_pages
+    92: upgrade_d7_node_espanol_basic_page
+    93: upgrade_d7_node_espanol_feature
+    94: upgrade_d7_node_espanol_video
+    95: upgrade_d7_node_event
+    96: upgrade_d7_node_events_search_layer
+    97: upgrade_d7_node_exhibition_page
+    98: upgrade_d7_node_exhibit_space
+    99: upgrade_d7_node_experience_jcl_newsletter
+    100: upgrade_d7_node_feature
+    101: upgrade_d7_node_feed
+    102: upgrade_d7_node_feed_events
+    103: upgrade_d7_node_feed_item
+    104: upgrade_d7_node_flexslider_example
+    105: upgrade_d7_node_for_educators
+    106: upgrade_d7_node_friends_bookstore
+    107: upgrade_d7_node_fun_stuff_blog_post
+    108: upgrade_d7_node_general_page
+    109: upgrade_d7_node_holiday_closing
+    110: upgrade_d7_node_holiday_hours
+    111: upgrade_d7_node_homework_help_guide
+    112: upgrade_d7_node_job
+    113: upgrade_d7_node_kids_book_list
+    114: upgrade_d7_node_kids_homework_help_special
+    115: upgrade_d7_node_kids_home_page
+    116: upgrade_d7_node_kids_librarian_picks
+    117: upgrade_d7_node_kids_page_for_parents
+    118: upgrade_d7_node_local_blogs
+    119: upgrade_d7_node_local_blogs_authors
+    120: upgrade_d7_node_local_blogs_music
+    121: upgrade_d7_node_location
+    122: upgrade_d7_node_location_history
+    123: upgrade_d7_node_makerspace
+    124: upgrade_d7_node_makerspace_equipment
+    125: upgrade_d7_node_meeting_room_reservation_page
+    126: upgrade_d7_node_mission
+    127: upgrade_d7_node_press_release
+    128: upgrade_d7_node_research_guide
+    129: upgrade_d7_node_resource
+    130: upgrade_d7_node_staff_review
+    131: upgrade_d7_node_support_news_post
+    132: upgrade_d7_node_support_page
+    133: upgrade_d7_node_support_story
+    134: upgrade_d7_node_teen_club
+    135: upgrade_d7_node_teen_contributed_review
+    136: upgrade_d7_node_teen_feature
+    137: upgrade_d7_node_teen_news_post
+    138: upgrade_d7_node_teen_staff_review
+    139: upgrade_d7_node_using_library_page
+    140: upgrade_d7_node_using_the_library_infographic
+    141: upgrade_d7_node_video
+    142: upgrade_d7_node_volunteer_annual_report
+    143: upgrade_d7_node_webform
+  optional:
+    - upgrade_d6_filter_format
+    - upgrade_d7_filter_format

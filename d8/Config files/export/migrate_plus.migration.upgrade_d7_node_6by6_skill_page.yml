@@ -1,0 +1,78 @@
+uuid: 4e577ce6-d872-4a5e-8bd7-bcf44937255c
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_6by6_skill_page
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (6by6 Skill Page)'
+source:
+  plugin: d7_node
+  node_type: 6by6_skill_page
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_6by6_body:
+    plugin: iterator
+    source: field_6by6_body
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_6by6_illustration:
+    plugin: iterator
+    source: field_6by6_illustration
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_6by6_videos:
+    plugin: iterator
+    source: field_6by6_videos
+    process:
+      value: video_url
+destination:
+  plugin: 'entity:node'
+  default_bundle: 6by6_skill_page
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance
+    - upgrade_d6_filter_format
+    - upgrade_d7_filter_format

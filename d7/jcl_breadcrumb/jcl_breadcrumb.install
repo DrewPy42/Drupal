@@ -1,0 +1,57 @@
+<?php
+/**
+ * @file
+ * Install and uninstall
+ */
+
+/**
+* Implements hook_install()
+*/
+function jcl_breadcrumb_install() {
+  // Set variables and their default values
+  
+  // Sets how the capital function is enabled
+  variable_set('jcl_breadcrumb_captializer_mode', 0);
+  // Default home link text
+  variable_set('jcl_breadcrumb_home_title','Home');
+  // By default disable drupal breadcrumb module to ensure no errors
+  variable_set('jcl_breadcrumb_disable_drupal_breadcrumb', TRUE);
+  // Default value for including invalid paths
+  variable_set('jcl_breadcrumb_include_invalid_paths', TRUE);
+  // Default segment seperator
+  variable_set('jcl_breadcrumb_segments_separator', '»');
+  // Sets whether the home value is shown in the breadcrumb
+  variable_set('jcl_breadcrumb_include_home_segment', TRUE);
+  // Sets whether the node title is included as part of the breadcrumb
+  variable_set('jcl_breadcrumb_include_title_segment', TRUE);
+  // Sets whether the home segment is a link
+  variable_set('jcl_breadcrumb_title_segment_as_link', FALSE);
+  // Sets whether to include the title from the page
+  variable_set('jcl_breadcrumb_title_from_page', TRUE);
+  // Default excluded paths
+  // variable_set('jcl_breadcrumb_excluded_paths', 'search/*');
+  // Default ignored words for the capitalization function
+  variable_set('jcl_breadcrumb_ignored_words', 'of and or de del y o');
+  // Default special words to be printed "as is"
+  variable_set('jcl_breadcrumb_special_words', 'eLibrary eBook eBooks eAudiobooks eAudiobook');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function jcl_breadcrumb_uninstall() {
+// deletes the variables
+  variable_del('jcl_breadcrumb_captializer_mode');
+  variable_del('jcl_breadcrumb_home_title');
+  variable_del('jcl_breadcrumb_disable_drupal_breadcrumb');
+  variable_del('jcl_breadcrumb_include_invalid_paths');
+  variable_del('jcl_breadcrumb_segments_separator');
+  variable_del('jcl_breadcrumb_include_home_segment');
+  variable_del('jcl_breadcrumb_include_title_segment');
+  variable_del('jcl_breadcrumb_title_segment_as_link');
+  variable_del('jcl_breadcrumb_title_from_page');
+  // variable_del('jcl_breadcrumb_excluded_paths');
+  variable_del('jcl_breadcrumb_ignored_words');
+  variable_del('jcl_breadcrumb_special_words');
+}
+

@@ -1,0 +1,5 @@
+name = JCL Java
+description = Adds custom java script files
+package = Johnson County Library
+core = 7.x
+

@@ -1,0 +1,48 @@
+uuid: 507e99ac-d3c7-485d-8f51-b932af203b14
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+id: upgrade_d7_taxonomy_term_resource_audience
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: d7
+label: 'Taxonomy terms (Resource Audience)'
+source:
+  plugin: d7_taxonomy_term
+  bundle: resource_audience
+process:
+  tid: tid
+  vid:
+    plugin: migration_lookup
+    migration: d7_taxonomy_vocabulary
+    source: vid
+  name: name
+  description/value: description
+  description/format: format
+  weight: weight
+  parent_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: parent
+    -
+      plugin: migration_lookup
+      migration: d7_taxonomy_term
+  parent:
+    plugin: default_value
+    default_value: 0
+    source: '@parent_id'
+  changed: timestamp
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: resource_audience
+migration_dependencies:
+  required: {  }

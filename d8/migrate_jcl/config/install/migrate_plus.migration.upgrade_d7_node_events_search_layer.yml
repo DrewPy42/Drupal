@@ -1,0 +1,123 @@
+uuid: cebb4e41-fda0-4b50-b6fa-172e55a64bb0
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+id: upgrade_d7_node_events_search_layer
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: d7
+label: 'Nodes (Events Search Layer)'
+source:
+  plugin: d7_node
+  node_type: events_search_layer
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  body:
+    plugin: iterator
+    source: body
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+      summary: summary
+  field_event_path:
+    plugin: iterator
+    source: field_event_path
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_event_guid:
+    plugin: iterator
+    source: field_event_guid
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_event_nid: field_event_nid
+  field_event_delta: field_event_delta
+  field_location: field_event_location
+  field_event_space:
+    plugin: iterator
+    source: field_event_space
+    process:
+      target_id: tid
+  field_event_search_date: 
+    plugin: fix_date_no_time
+    source: field_event_search_date
+  field_event_starttime:
+    plugin: fix_date_with_time
+    source: field_event_start
+  field_event_endtime:
+    plugin: fix_date_with_time
+    source: field_event_end
+  field_event_reg_status:
+    plugin: iterator
+    source: field_event_reg_status
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_age_group:
+    plugin: iterator
+    source: field_agegroup_ref
+    process:
+      target_id: tid
+  field_event_type:
+    plugin: iterator
+    source: field_eventtype_ref
+    process:
+      target_id: tid
+  field_event_age_group_text:
+    plugin: iterator
+    source: field_event_agegroupconcat
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_event_type_text:
+    plugin: iterator
+    source: field_event_typeconcat
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  'path/pathauto': 
+    plugin: default_value
+    default_value: 0 # Disable pathauto.
+  alias: alias
+destination:
+  plugin: 'entity:node'
+  default_bundle: event_search_layer
+migration_dependencies:
+  required:
+    - upgrade_d7_custom_user

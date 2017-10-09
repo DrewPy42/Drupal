@@ -1,0 +1,5 @@
+name = JCL Alerts
+description = Displays site alerts in a custom block with custom theming using a content type of 'alert'.
+package = Johnson County Library
+core = 7.x
+configure = admin/config/user-interface/jcl-alerts

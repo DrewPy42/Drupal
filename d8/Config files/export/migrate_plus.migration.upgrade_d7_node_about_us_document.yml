@@ -1,0 +1,61 @@
+uuid: ec36de8b-442f-4775-a804-0284e50d6682
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_about_us_document
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (About Us Document)'
+source:
+  plugin: d7_node
+  node_type: about_us_document
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_aboutdoc_altformat:
+    plugin: iterator
+    source: field_aboutdoc_altformat
+    process:
+      target_id: fid
+      display: display
+      description: description
+  field_aboutdoc_date: field_aboutdoc_date
+  field_aboutdoc_pdf:
+    plugin: iterator
+    source: field_aboutdoc_pdf
+    process:
+      target_id: fid
+      display: display
+      description: description
+  field_aboutdoc_type:
+    plugin: iterator
+    source: field_aboutdoc_type
+    process:
+      target_id: tid
+destination:
+  plugin: 'entity:node'
+  default_bundle: about_us_document
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

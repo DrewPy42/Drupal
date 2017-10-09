@@ -1,0 +1,5 @@
+name = JCL Collapse
+description = Associates the collapsing javascript with the 'Collasible Menu' content type and block.
+package = Johnson County Library
+core = 7.x
+dependencies[] = link

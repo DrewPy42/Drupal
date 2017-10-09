@@ -1,0 +1,85 @@
+uuid: 989151ac-0f9b-469a-b51f-355ebc7e82ac
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_event
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Event)'
+source:
+  plugin: d7_node
+  node_type: event
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  body:
+    plugin: iterator
+    source: body
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_image_with_caption: field_image_with_caption
+  field_event_location: field_event_location
+  field_event_space:
+    plugin: iterator
+    source: field_event_space
+    process:
+      target_id: tid
+  field_event_dates: field_event_dates
+  field_event_starttime: field_event_starttime
+  field_event_endtime: field_event_endtime
+  field_eventtype_ref:
+    plugin: iterator
+    source: field_eventtype_ref
+    process:
+      target_id: tid
+  field_agegroup_ref:
+    plugin: iterator
+    source: field_agegroup_ref
+    process:
+      target_id: tid
+  field_event_registration: field_event_registration
+destination:
+  plugin: 'entity:node'
+  default_bundle: event
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance
+    - upgrade_d6_filter_format
+    - upgrade_d7_filter_format

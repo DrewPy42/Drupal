@@ -1,0 +1,10 @@
+uuid: 379e4754-9797-4c27-a3ea-0890b4bdfbd3
+langcode: en
+status: true
+dependencies:
+  module:
+    - courier
+id: courier_message_queue_item.token
+label: Token
+targetEntityType: courier_message_queue_item
+cache: true

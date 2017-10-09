@@ -1,0 +1,112 @@
+uuid: 18e228c1-8b53-4871-b5ad-0ba815ae2fe4
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_bibliocommons_json_feed
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Bibliocommons JSON Feed)'
+source:
+  plugin: d7_node
+  node_type: bibliocommons_json_feed
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_jsonbiblio_body:
+    plugin: iterator
+    source: field_jsonbiblio_body
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_biblioitem_listid: field_biblioitem_listid
+  field_biblioitem_listname:
+    plugin: iterator
+    source: field_biblioitem_listname
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_biblioitem_listurl:
+    plugin: iterator
+    source: field_biblioitem_listurl
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_jsonbiblio_listtype:
+    plugin: iterator
+    source: field_jsonbiblio_listtype
+    process:
+      target_id: tid
+destination:
+  plugin: 'entity:node'
+  default_bundle: bibliocommons_json_feed
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance
+    - upgrade_d6_filter_format
+    - upgrade_d7_filter_format

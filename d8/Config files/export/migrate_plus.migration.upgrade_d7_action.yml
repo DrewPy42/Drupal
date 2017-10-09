@@ -1,0 +1,47 @@
+uuid: 92f16176-1acc-4e28-937e-9538ef41c3cd
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_action
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: Actions
+source:
+  plugin: action
+process:
+  id:
+    -
+      plugin: machine_name
+      source: aid
+  label: label
+  type: type
+  plugin:
+    -
+      plugin: static_map
+      source: callback
+      map:
+        system_goto_action: action_goto_action
+        system_send_email_action: action_send_email_action
+        system_message_action: action_message_action
+        system_block_ip_action: 0
+      bypass: true
+    -
+      plugin: skip_on_empty
+      method: row
+  configuration:
+    -
+      plugin: default_value
+      source: parameters
+      default_value: 'a:0:{}'
+    -
+      plugin: callback
+      callable: unserialize
+destination:
+  plugin: 'entity:action'
+migration_dependencies:
+  required: {  }
+  optional: {  }

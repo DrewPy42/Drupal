@@ -1,0 +1,33 @@
+uuid: be097bbe-762f-4f71-853b-eacdbd279de0
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_comment_entity_display
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Comment display configuration'
+source:
+  plugin: d7_comment_type
+  constants:
+    entity_type: node
+    view_mode: default
+    options:
+      label: hidden
+      type: comment_default
+      weight: 20
+process:
+  entity_type: constants/entity_type
+  field_name: bundle
+  view_mode: constants/view_mode
+  options: constants/options
+  bundle: node_type
+destination:
+  plugin: component_entity_display
+migration_dependencies:
+  required:
+    - upgrade_d7_comment_field_instance
+  optional: {  }

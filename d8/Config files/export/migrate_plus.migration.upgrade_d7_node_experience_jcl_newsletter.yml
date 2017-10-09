@@ -1,0 +1,58 @@
+uuid: ad7b3d60-c20b-4798-8510-6e26c2afd205
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_experience_jcl_newsletter
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Newsroom Document)'
+source:
+  plugin: d7_node
+  node_type: experience_jcl_newsletter
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_jclnewsletter_altformat:
+    plugin: iterator
+    source: field_jclnewsletter_altformat
+    process:
+      target_id: fid
+      display: display
+      description: description
+  field_jclnewsletter_pdf:
+    plugin: iterator
+    source: field_jclnewsletter_pdf
+    process:
+      target_id: fid
+      display: display
+      description: description
+  field_jclnewsletter_quarter: field_jclnewsletter_quarter
+  field_jclnewsletter_year: field_jclnewsletter_year
+  field_jclnewsletter_type: field_jclnewsletter_type
+destination:
+  plugin: 'entity:node'
+  default_bundle: experience_jcl_newsletter
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

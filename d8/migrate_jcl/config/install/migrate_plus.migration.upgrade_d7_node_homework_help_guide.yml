@@ -1,0 +1,77 @@
+uuid: c932a22e-91df-4505-8ee5-ba61c6b44b8f
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+id: upgrade_d7_node_homework_help_guide
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: d7
+label: 'Nodes (Homework Help Guide)'
+source:
+  plugin: d7_node
+  node_type: homework_help_guide
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_image:
+    plugin: iterator
+    source: field_homework_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  body:
+    plugin: iterator
+    source: field_homework_overview
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+      summary: summary
+  field_homework_references:
+    plugin: iterator
+    source: field_homework_references
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_field_collection_field_homework_references
+        source: target_id
+      target_revision_id:
+        plugin: migration_lookup
+        migration: d7_field_collection_field_homework_references
+        source: revision_id
+  'path/pathauto': 
+    plugin: default_value
+    default_value: 0 # Disable pathauto.
+  alias: alias
+destination:
+  plugin: 'entity:node'
+  default_bundle: homework_help_guide
+migration_dependencies:
+  required:
+    - upgrade_d7_custom_user

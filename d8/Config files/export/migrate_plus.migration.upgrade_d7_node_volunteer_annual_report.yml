@@ -1,0 +1,56 @@
+uuid: ab193b22-af64-4702-b4f5-844499bf0718
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_volunteer_annual_report
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Volunteer Annual Report)'
+source:
+  plugin: d7_node
+  node_type: volunteer_annual_report
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_volreport_date: field_volreport_date
+  field_volreport_pdf:
+    plugin: iterator
+    source: field_volreport_pdf
+    process:
+      target_id: fid
+      display: display
+      description: description
+  field_volreport_altversion:
+    plugin: iterator
+    source: field_volreport_altversion
+    process:
+      target_id: fid
+      display: display
+      description: description
+destination:
+  plugin: 'entity:node'
+  default_bundle: volunteer_annual_report
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

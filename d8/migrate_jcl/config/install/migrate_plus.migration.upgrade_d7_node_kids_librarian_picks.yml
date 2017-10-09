@@ -1,0 +1,210 @@
+uuid: f00ae636-4c90-428b-89f3-fb2ae82ba779
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+id: upgrade_d7_node_kids_librarian_picks
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: d7
+label: 'Nodes (Kids Librarian Picks)'
+source:
+  plugin: d7_node
+  node_type: kids_librarian_picks
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_librarian: field_kidpick_librarian
+  body:
+    plugin: iterator
+    source: field_kidpick_body
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+      summary: summary
+  field_featured_image:
+    plugin: iterator
+    source: field_kidpick_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_kidpick_favorite_color:
+    plugin: iterator
+    source: field_kidpick_favorite_color
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_favorite_dessert:
+    plugin: iterator
+    source: field_kidpick_favorite_dessert
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_best_advice:
+    plugin: iterator
+    source: field_kidpick_best_advice
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+      summary: summary
+  field_kidpick_vacation:
+    plugin: iterator
+    source: field_kidpick_vacation
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_traveling:
+    plugin: iterator
+    source: field_kidpick_traveling
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_childhood_longing:
+    plugin: iterator
+    source: field_kidpick_childhood_longing
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+      summary: summary
+  field_kidpick_favorite_season:
+    plugin: iterator
+    source: field_kidpick_favorite_season
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_disgusting_eats:
+    plugin: iterator
+    source: field_kidpick_disgusting_eats
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_favorite_sound:
+    plugin: iterator
+    source: field_kidpick_favorite_sound
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_instruments:
+    plugin: iterator
+    source: field_kidpick_instruments
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_cartoons:
+    plugin: iterator
+    source: field_kidpick_cartoons
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+      summary: summary
+  field_kidpick_favorite_veggie:
+    plugin: iterator
+    source: field_kidpick_favorite_veggie
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_favorite_celebrity:
+    plugin: iterator
+    source: field_kidpick_favorite_celebrity
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_my_word:
+    plugin: iterator
+    source: field_kidpick_my_word
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_kidpick_current_read:
+    plugin: iterator
+    source: field_kidpick_current_read
+    process:
+      uri: url
+      title: title
+      options: attributes
+  field_kidpick_favorite_read:
+    plugin: iterator
+    source: field_kidpick_favorite_read
+    process:
+      uri: url
+      title: title
+      options: attributes
+  field_kidpick_fun_fact:
+    plugin: iterator
+    source: field_kidpick_fun_fact
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_booklist_url:
+    plugin: iterator
+    source: field_kidpick_booklist
+    process:
+      uri: url
+      title: title
+      options: attributes
+  'path/pathauto': 
+    plugin: default_value
+    default_value: 0 # Disable pathauto.
+  alias: alias
+destination:
+  plugin: 'entity:node'
+  default_bundle: librarian_picks
+migration_dependencies:
+  required:
+    - upgrade_d7_custom_user

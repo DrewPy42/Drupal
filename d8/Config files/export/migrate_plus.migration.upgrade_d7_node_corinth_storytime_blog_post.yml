@@ -1,0 +1,88 @@
+uuid: 74592f6e-177f-4afb-8b6c-da6a0e87c2e4
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_corinth_storytime_blog_post
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Corinth Storytime blog post)'
+source:
+  plugin: d7_node
+  node_type: corinth_storytime_blog_post
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_corinthstorytime_body:
+    plugin: iterator
+    source: field_corinthstorytime_body
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_corinthstorytime_image:
+    plugin: iterator
+    source: field_corinthstorytime_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_corinthstorytime_tags:
+    plugin: iterator
+    source: field_corinthstorytime_tags
+    process:
+      target_id: tid
+  field_corinthstorytime_category:
+    plugin: iterator
+    source: field_corinthstorytime_category
+    process:
+      target_id: tid
+  field_corinthstorytime_video:
+    plugin: iterator
+    source: field_corinthstorytime_video
+    process:
+      value: video_url
+destination:
+  plugin: 'entity:node'
+  default_bundle: corinth_storytime_blog_post
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance
+    - upgrade_d6_filter_format
+    - upgrade_d7_filter_format

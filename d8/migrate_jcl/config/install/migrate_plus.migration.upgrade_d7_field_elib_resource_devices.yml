@@ -1,0 +1,49 @@
+id: d7_field_collection_field_elib_resource_devices
+label: D7 Field Collection - eLibrary Resource Devices
+migration_group: d7
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+source:
+  plugin: field_collection_item
+  field_name: field_elib_resource_devices
+process:
+  # Map fields from field collection to paragraph
+  field_elibrary_devices: 
+    plugin: iterator
+    source: field_elib_resource_device
+    process:
+      target_id: tid
+  field_url: 
+    plugin: iterator
+    source: field_elib_resource_dlapplink
+    process:
+      uri: url
+      title: title
+      options: attributes
+  field_elibrary_guide: field_elib_resource_refguide
+  field_elibrary_is_primary:
+    plugin: default_value
+    default_value: 0
+  type:
+    plugin: default_value
+    default_value: elibrary_device
+  revision_id: revision_id
+  uid: uid
+  parent_id: entity_id
+  parent_type:
+    plugin: default_value
+    default_value: node
+  parent_field_name: 
+    plugin: default_value
+    default_value: field_elibrary_devices
+  langcode:
+    plugin: default_value
+    default_value: und
+destination:
+  plugin: entity_reference_revisions:paragraph
+migration_dependencies:
+  required: {  }

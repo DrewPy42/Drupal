@@ -1,0 +1,68 @@
+id: d7_field_collection_field_local_music_content
+label: D7 Field Collection - Local Music Content
+migration_group: d7
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+source:
+  plugin: field_collection_item
+  field_name: field_local_music_content
+process:
+  # Map fields from field collection to paragraph
+  field_blog_text:
+    plugin: iterator
+    source: field_blog_text
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+      summary: summary
+  image_with_caption:
+    plugin: iterator
+    source: field_image_with_caption
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_field_collection_field_image_with_caption
+        source: target_id
+      target_revision_id:
+        plugin: migration_lookup
+        migration: d7_field_collection_field_image_with_caption
+        source: revision_id
+  field_video_embed:
+    plugin: iterator
+    source: field_local_music_video
+    process:
+      value: video_url
+  field_media_share:
+    plugin: iterator
+    source: field_local_music_media_share
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+  type:
+    plugin: default_value
+    default_value: local_music_content
+  revision_id: revision_id
+  uid: uid
+  parent_id: entity_id
+  parent_type:
+    plugin: default_value
+    default_value: node
+  parent_field_name: 
+    plugin: default_value
+    default_value: field_local_music_content
+  langcode:
+    plugin: default_value
+    default_value: und
+destination:
+  plugin: entity_reference_revisions:paragraph
+migration_dependencies:
+  required:
+    - d7_field_collection_field_image_with_caption

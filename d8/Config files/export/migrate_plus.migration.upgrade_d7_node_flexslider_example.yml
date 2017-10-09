@@ -1,0 +1,59 @@
+uuid: 96b06349-683b-4103-a6a0-056295952571
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_flexslider_example
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (FlexSlider Example)'
+source:
+  plugin: d7_node
+  node_type: flexslider_example
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_flexslider_example_image:
+    plugin: iterator
+    source: field_flexslider_example_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_flexslider_example_slidesh:
+    plugin: iterator
+    source: field_flexslider_example_slidesh
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+destination:
+  plugin: 'entity:node'
+  default_bundle: flexslider_example
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

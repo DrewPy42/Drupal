@@ -1,0 +1,58 @@
+id: d7_field_collection_field_elibguide_details
+label: D7 Field Collection - eLibrary Guide
+migration_group: d7
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+source:
+  plugin: field_collection_item
+  field_name: field_elibguide_details
+process:
+  # Map fields from field collection to paragraph
+  field_subtitle:
+    plugin: iterator
+    source: field_elibguide_details_subtitle
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_description:
+    plugin: iterator
+    source: field_elib_guide_step_details
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  field_image: 
+    source: field_elibguide_details_imgs
+    plugin: iterator
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  type:
+    plugin: default_value
+    default_value: elibary_guide_details
+  revision_id: revision_id
+  uid: uid
+  parent_id: entity_id
+  parent_type:
+    plugin: default_value
+    default_value: node
+  parent_field_name: 
+    plugin: default_value
+    default_value: field_elibary_guide_details
+  langcode:
+    plugin: default_value
+    default_value: und
+destination:
+  plugin: entity_reference_revisions:paragraph
+migration_dependencies:
+  required: {  }

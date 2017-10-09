@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * JCL Alerts module (un)installation functions.
+ */
+/**
+* Implements hook_install()
+*/
+function jcl_alerts_install() {
+	variable_set('jcl_alerts_content_type', 'alert');
+	variable_set('jcl_alerts_dismiss_all_count', 2);
+	variable_set('jcl_alerts_type_field','field_alert_type');
+	_jcl_alerts_add_taxonomy();
+	_jcl_alerts_add_fields();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function jcl_alerts_uninstall() {
+	variable_del('jcl_alerts_content_type');
+	variable_del('jcl_alerts_dismiss_all_count');
+	variable_del('jcl_alerts_type_field');
+	$vocab = taxonomy_vocabulary_machine_name_load('alert_types');
+  	taxonomy_vocabulary_delete($vocab->vid);
+	field_delete_field('field_alert_type');
+
+}
+
+function _jcl_alerts_add_fields() {
+	$field_name = 'field_alert_type';
+	//  Verify the field does not already exist.
+	if (! field_info_field($field_name) ) {
+		//  Create the field definition array.
+		$field = array(
+			'field_name' => $field_name,
+			'type' => 'taxonomy_term_reference',
+			'cardinality'	=> 1,
+			'allowed_values' => array(
+				array(
+					'vocabulary' => 'alert_types',
+					'parent' => 0
+				),
+			),
+		);
+		//  Create the field.
+		$field = field_create_field( $field );
+
+		//  Create the field instance definition array.
+		$instance = array(
+			'field_name'	=> $field['field_name'],
+			'entity_type'	=> 'node',
+			'bundle'		=> 'alert',
+			'description'	=> "The type of alert. This affects how the alert is displayed on the screen.",
+			'label'			=> 'Alert Type',
+			'default_value' => _jcl_alerts_get_default(),
+			'widget'		=> array(
+				'type' => 'options_select',
+			),
+		);
+		//  Create an instance of the field and bind it to the bundle.
+		field_create_instance($instance);
+	}
+}
+
+function _jcl_alerts_add_taxonomy() {
+	$vocab = new stdClass();
+	$vocab->name = 'Alert Types';
+	$vocab->machine_name = 'alert_types';
+	taxonomy_vocabulary_save($vocab);
+
+	$vocab = taxonomy_vocabulary_machine_name_load('alert_types');
+	_jcl_alerts_add_terms('default', $vocab);
+	_jcl_alerts_add_terms('cbu', $vocab);
+	_jcl_alerts_add_terms('important', $vocab);
+	_jcl_alerts_add_terms('warning', $vocab);
+	_jcl_alerts_add_terms('teens', $vocab);
+}
+
+function _jcl_alerts_add_terms($term_text, $vocab) {
+	$vocab = taxonomy_vocabulary_machine_name_load('alert_types');
+	$term = new stdClass();
+	$term->name = $term_text;
+	$term->vid = $vocab->vid;
+	taxonomy_term_save($term);
+}
+
+// function _jcl_alerts_get_default() {
+// 	$term = taxonomy_get_term_by_name('default', 'alert_types');
+// 	return $term->tid;
+// }

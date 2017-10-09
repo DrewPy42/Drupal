@@ -1,0 +1,67 @@
+uuid: a0072200-50ba-4579-8c99-c5006f4b0124
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+id: upgrade_d7_node_alert
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: d7
+label: 'Nodes (Alert)'
+source:
+  plugin: d7_node
+  node_type: alert
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  body:
+    plugin: iterator
+    source: field_alert_details
+    process:
+      format:
+        plugin: default_value
+        default_value: full_html
+      value: value
+      summary: summary
+  field_alert_is_global: field_alert_is_global
+  field_alert_type:
+    plugin: iterator
+    source: field_alert_type
+    process:
+      target_id: tid
+  field_alert_section:
+    plugin: iterator
+    source: field_alert_section
+    process:
+      target_id: tid
+  'path/pathauto': 
+    plugin: default_value
+    default_value: 0 # Disable pathauto.
+  alias: alias
+destination:
+  plugin: 'entity:node'
+  default_bundle: alert
+migration_dependencies:
+  required:
+    - upgrade_d7_custom_user

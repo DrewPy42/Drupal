@@ -1,0 +1,53 @@
+uuid: 3afabcb9-f257-4171-8d24-d602d8919c60
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_birth_to_6_book_list
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Birth to 6 Book List)'
+source:
+  plugin: d7_node
+  node_type: birth_to_6_book_list
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_6by6_booklistimg:
+    plugin: iterator
+    source: field_6by6_booklistimg
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_6by6_booklisturl:
+    plugin: d6_field_link
+    source: field_6by6_booklisturl
+destination:
+  plugin: 'entity:node'
+  default_bundle: birth_to_6_book_list
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

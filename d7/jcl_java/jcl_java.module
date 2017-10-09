@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * The JCL Java module contains custom js files
+ */
+
+/**
+ * Implements hook_init().
+ */
+function jcl_java_init() {
+
+	drupal_add_js(drupal_get_path('module', 'jcl_java') . '/js/jcl_menus.js');
+
+}
+

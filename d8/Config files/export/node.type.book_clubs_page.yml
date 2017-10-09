@@ -1,0 +1,17 @@
+uuid: cea2f4a4-9107-4d8a-ae82-f2e6f6c5fbfa
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Book Clubs page'
+type: book_clubs_page
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

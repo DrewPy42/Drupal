@@ -1,0 +1,55 @@
+uuid: 65ccff4d-2ff7-47bc-86b4-36d6084a12ef
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_6by6_pdf
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (6by6 PDF)'
+source:
+  plugin: d7_node
+  node_type: 6by6_pdf
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_6by6_pdf:
+    plugin: iterator
+    source: field_6by6_pdf
+    process:
+      target_id: fid
+      display: display
+      description: description
+  field_6by6_altformat:
+    plugin: iterator
+    source: field_6by6_altformat
+    process:
+      target_id: fid
+      display: display
+      description: description
+destination:
+  plugin: 'entity:node'
+  default_bundle: 6by6_pdf
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

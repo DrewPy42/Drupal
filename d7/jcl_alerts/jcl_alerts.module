@@ -1,0 +1,127 @@
+<?php
+/**
+* @file
+* The JCL Alerts module generates a block that contains alerts that can be dismissed
+* The data for these alerts is drawn from a content type with theming available by 
+* a taxonomy field in the content type.
+* Some of the code is based on Absolute Messages by Maciej Zgadzaj.
+*/
+
+
+/**
+ * Implements hook_permission().
+ *
+ * @return Assoc
+ *   permission items.
+ */
+function jcl_alerts_permission() {
+    return array(
+        'administer jcl_alerts' => array(
+            'title' => t("Administer JCL Alerts"),
+            'description' => t('Perform administration tasks for the module JCL Alerts.'),
+        ),
+    );
+}
+
+/**
+ * Implements hook_init().
+ */
+function jcl_alerts_init() {
+    // Add module javascript. Legacy from absolute messgaes
+    drupal_add_js(drupal_get_path('module', 'jcl_alerts') . '/jcl_alerts.js');
+    // Module configuration for javascript. This is legacy from absolute messages
+    $settings = array(
+        'dismiss'           => array(),
+        'dismiss_all_count' => variable_get('jcl_alerts_dismiss_all_count', 2),
+    );
+
+    // Pass configuration to Javascrript. This is legacy from Absolute messages
+    drupal_add_js(strtr('jQuery.extend(Drupal.jcl_alerts, !settings);', array(
+        '!settings' => drupal_json_encode($settings),
+    )), 'inline');
+    drupal_add_http_header('X-Clacks-Overhead', 'GNU Terry Pratchett');
+}
+
+/**
+ * Implements hook_menu().
+ *
+ * @return Assoc
+ *   menu items.
+ */
+function jcl_alerts_menu() {
+    $items = array();
+    $items['admin/config/user-interface/jcl_alerts'] = array(
+        'title' => 'JCL Alerts',
+        'description' => "Controls settings for the module JCL Alerts",
+        'file' => 'jcl_alerts_admin.inc',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('_jcl_alerts_general_settings_form'),
+        'access arguments' => array('administer jcl_alerts'),
+    );
+
+
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ *
+ * @return Assoc
+ *     the blocks' info.
+ */
+function jcl_alerts_block_info() {
+    $block = array();
+    $block['jcl_alerts'] = array(
+        'info' => t('JCL alerts'),
+        'cache' => DRUPAL_NO_CACHE, 
+    );
+    
+    return $block;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * @param string $delta
+ *     the identifier of the requested block.
+ *
+ * @return Assoc
+ *     the requested block's view.
+ */
+function jcl_alerts_block_view($delta = '') {
+    $block = array();
+    switch ($delta) {
+        case 'jcl_alerts':
+            require_once 'jcl_alerts_block.inc';
+            $block['content'] = _jcl_alerts_block(); 
+            break;
+    }
+
+    return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function jcl_alerts_theme() {
+    // this code is legacy from absolute messages.
+    // Removed the group messaging and messages wrappers
+    $path = drupal_get_path('module', 'jcl_alerts');
+    return array(
+        'jcl_alerts_wrapper' => array(
+            'template'    => 'jcl-alerts-wrapper',
+            'path'            => "$path/theme",
+            'variables' => array(),
+        ),
+        'jcl_alerts_message' => array(
+            'template'    => 'jcl-alerts-message',
+            'path'            => "$path/theme",
+            'variables' => array(),
+        ),
+        'jcl_alerts_dismiss_all' => array(
+            'template'    => 'jcl-alerts-dismiss-all',
+            'path'            => "$path/theme",
+            'variables' => array(),
+        ),
+    );
+}

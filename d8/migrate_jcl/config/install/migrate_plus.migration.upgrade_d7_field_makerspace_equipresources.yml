@@ -1,0 +1,49 @@
+id: d7_field_collection_field_booklist
+label: D7 Field Collection - Makerspace Equipment Resources
+migration_group: d7
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+source:
+  plugin: field_collection_item
+  field_name: field_makerspace_equipresources
+process:
+  # Map fields from field collection to paragraph
+  field_image: 
+    source: field_makerspace_bookcover
+    plugin: iterator
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_booklist_url: 
+    plugin: iterator
+    source: field_makerspace_listurl
+    process:
+      uri: url
+      title: title
+      options: attributes
+  type:
+    plugin: default_value
+    default_value: booklist
+  revision_id: revision_id
+  uid: uid
+  parent_id: entity_id
+  parent_type:
+    plugin: default_value
+    default_value: node
+  parent_field_name: 
+    plugin: default_value
+    default_value: field_booklist
+  langcode:
+    plugin: default_value
+    default_value: und
+destination:
+  plugin: entity_reference_revisions:paragraph
+migration_dependencies:
+  required: {  }

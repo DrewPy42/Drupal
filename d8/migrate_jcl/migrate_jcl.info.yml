@@ -1,0 +1,8 @@
+type: module
+name: Migrate JCL Data
+description: 'JCL data migration.'
+package: Migration
+core: 8.x
+dependencies:
+  - migrate_plus
+  - migrate_source_csv

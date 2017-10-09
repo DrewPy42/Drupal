@@ -1,0 +1,6 @@
+name = JCL iCal
+description = Adds the ability to create/download iCal files
+package = Johnson County Library
+core = 7.x
+
+files[] = jcl_ical_core.inc

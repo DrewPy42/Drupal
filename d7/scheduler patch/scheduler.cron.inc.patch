@@ -1,0 +1,53 @@
+175,177c175,180
+<     $actions = array('node_unpublish_action', 'node_save_action');
+<     $context['node'] = $n;
+<     actions_do($actions, $n, $context, NULL, NULL);
+---
+>     // $actions = array('node_unpublish_action', 'node_save_action');
+>     // $context['node'] = $n;
+>     // actions_do($actions, $n, $context, NULL, NULL);
+>     if ($n->status == 1) {
+>       jcl_wb_mod($n);
+>     }
+256a260,299
+> 
+> // custom function to allow scheduler to unpublish a module when Workbench is installed
+> function jcl_wb_mod($node) {
+>   $state = 'draft';
+> 
+>   // Build a history record.
+>   $new_revision = (object) array(
+>     'from_state' => 'published',
+>     'state' => $state,
+>     'nid' => $node->nid,
+>     'vid' => $node->vid,
+>     'uid' => 1,
+>     'is_current' => 1,
+>     'published' => 0,
+>     'stamp' => $_SERVER['REQUEST_TIME'],
+>   );
+> 
+>   // If this is the new 'current' moderation record, it should be the only one
+>   // flagged 'current' in {workbench_moderation_node_history}.
+>   if ($new_revision->is_current) {
+>     $query = db_update('workbench_moderation_node_history')
+>       ->condition('nid', $node->nid)
+>       ->fields(array('is_current' => 0))
+>       ->execute();
+>     $query = db_update('node_revision')
+>       ->condition('nid', $node->nid)
+>       ->fields(array('status' => 0))
+>       ->execute();
+>     $query = db_update('node')
+>       ->condition('nid', $node->nid)
+>       ->fields(array('status' => 0))
+>       ->execute();
+>     $query = db_delete('scheduler')
+>       ->condition('nid', $node->nid)
+>       ->execute();
+>   }
+> 
+>   // Save the node history record.
+>   drupal_write_record('workbench_moderation_node_history', $new_revision);
+> }
+\ No newline at end of file

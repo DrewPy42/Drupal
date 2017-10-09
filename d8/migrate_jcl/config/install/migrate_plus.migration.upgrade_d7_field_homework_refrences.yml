@@ -1,0 +1,42 @@
+id: d7_field_collection_field_homework_references
+label: D7 Field Collection - Homework References
+migration_group: d7
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+source:
+  plugin: field_collection_item
+  field_name: field_homework_references
+process:
+  # Map fields from field collection to paragraph
+  field_resource: field_homework_references2
+  field_resource_description: 
+    plugin: iterator
+    source: field_homework_references3
+    process:
+      format:
+        plugin: default_value
+        default_value: plain_text
+      value: value
+  type:
+    plugin: default_value
+    default_value: homework_references
+  revision_id: revision_id
+  uid: uid
+  parent_id: entity_id
+  parent_type:
+    plugin: default_value
+    default_value: node
+  parent_field_name: 
+    plugin: default_value
+    default_value: field_homework_references
+  langcode:
+    plugin: default_value
+    default_value: und
+destination:
+  plugin: entity_reference_revisions:paragraph
+migration_dependencies:
+  required: {  }

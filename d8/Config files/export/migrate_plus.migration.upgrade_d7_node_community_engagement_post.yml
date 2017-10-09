@@ -1,0 +1,110 @@
+uuid: 493f3c64-e910-4988-bac8-f01a6a0a2e4b
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_community_engagement_post
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Community Engagement Post)'
+source:
+  plugin: d7_node
+  node_type: community_engagement_post
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_communityeng_body:
+    plugin: iterator
+    source: field_communityeng_body
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_communityeng_category:
+    plugin: iterator
+    source: field_communityeng_category
+    process:
+      target_id: tid
+  field_communityeng_tags:
+    plugin: iterator
+    source: field_communityeng_tags
+    process:
+      target_id: tid
+  field_communityeng_image:
+    plugin: iterator
+    source: field_communityeng_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_communityeng_video:
+    plugin: iterator
+    source: field_communityeng_video
+    process:
+      value: video_url
+  field_communityeng_promote: field_communityeng_promote
+  field_communityeng_media:
+    plugin: iterator
+    source: field_communityeng_media
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+destination:
+  plugin: 'entity:node'
+  default_bundle: community_engagement_post
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance
+    - upgrade_d6_filter_format
+    - upgrade_d7_filter_format

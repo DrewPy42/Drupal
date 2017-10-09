@@ -1,0 +1,127 @@
+uuid: 97f25bcc-58f9-4249-9977-860956b8e978
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_teen_staff_review
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Teen Staff Review)'
+source:
+  plugin: d7_node
+  node_type: teen_staff_review
+process:
+  nid: tnid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_teen_review_body:
+    plugin: iterator
+    source: field_teen_review_body
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_teen_review_catalogurl:
+    plugin: d6_field_link
+    source: field_teen_review_catalogurl
+  field_teen_review_category:
+    plugin: iterator
+    source: field_teen_review_category
+    process:
+      target_id: tid
+  field_teen_review_cover:
+    plugin: iterator
+    source: field_teen_review_cover
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_teen_review_image:
+    plugin: iterator
+    source: field_teen_review_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_teen_review_rating: field_teen_review_rating
+  field_teen_review_tags:
+    plugin: iterator
+    source: field_teen_review_tags
+    process:
+      target_id: tid
+  field_teen_review_author:
+    plugin: iterator
+    source: field_teen_review_author
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - upgrade_d6_filter_format
+            - upgrade_d7_filter_format
+          source: format
+  field_teen_review_video:
+    plugin: iterator
+    source: field_teen_review_video
+    process:
+      value: video_url
+  field_teen_review_format:
+    plugin: iterator
+    source: field_teen_review_format
+    process:
+      target_id: tid
+destination:
+  plugin: 'entity:node'
+  default_bundle: teen_staff_review
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance
+    - upgrade_d6_filter_format
+    - upgrade_d7_filter_format

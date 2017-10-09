@@ -1,0 +1,14 @@
+uuid: e66143b1-0d10-49a3-8022-9d516df69b10
+name: 'Johnson County Library'
+mail: jcl-webteam@jocolibrary.org
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: AyT9s8OUcclfALRE_imByOMgtZ19eOlqdF6zI3p7yqo

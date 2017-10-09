@@ -1,0 +1,61 @@
+uuid: 34ae591e-5c16-4e79-826d-1637b7cf75ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.book_clubs_page.body
+    - field.field.node.book_clubs_page.field_bookclubs_tips
+    - field.field.node.book_clubs_page.field_image_with_caption
+    - field.field.node.book_clubs_page.field_url
+    - node.type.book_clubs_page
+  module:
+    - entity_reference_revisions
+    - link
+    - text
+    - user
+id: node.book_clubs_page.default
+targetEntityType: node
+bundle: book_clubs_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_bookclubs_tips:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_image_with_caption:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_url:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

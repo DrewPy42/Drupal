@@ -1,0 +1,10 @@
+uuid: 718dc15d-a8d4-49fe-82b5-a529969fba54
+langcode: en
+status: true
+dependencies:
+  module:
+    - courier
+id: courier_email.token
+label: Token
+targetEntityType: courier_email
+cache: true
