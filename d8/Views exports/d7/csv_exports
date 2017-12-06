@@ -1,0 +1,1369 @@
+$view = new view();
+$view->name = 'csv_exports';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'node';
+$view->human_name = 'CSV Exports';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'Statistics';
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'role';
+$handler->display->display_options['access']['role'] = array(
+  3 => '3',
+);
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['query']['options']['distinct'] = TRUE;
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'full';
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['row_plugin'] = 'fields';
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['label'] = 'id';
+$handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+/* Field: Content revision: Vid */
+$handler->display->display_options['fields']['vid']['id'] = 'vid';
+$handler->display->display_options['fields']['vid']['table'] = 'node_revision';
+$handler->display->display_options['fields']['vid']['field'] = 'vid';
+$handler->display->display_options['fields']['vid']['label'] = 'vid';
+$handler->display->display_options['fields']['vid']['element_label_colon'] = FALSE;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = 'title';
+$handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['title']['alter']['text'] = 'Agenda - [title]';
+$handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'body';
+$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+/* Field: Content: Date */
+$handler->display->display_options['fields']['field_boardmtg_date']['id'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['table'] = 'field_data_field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['field'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['label'] = 'report_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_date']['type'] = 'date_plain';
+$handler->display->display_options['fields']['field_boardmtg_date']['settings'] = array(
+  'format_type' => 'ymd',
+  'fromto' => 'both',
+  'multiple_number' => '',
+  'multiple_from' => '',
+  'multiple_to' => '',
+  'show_remaining_days' => 0,
+);
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+$handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+$handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing_1']['label'] = 'report_type';
+$handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'agenda';
+$handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+$handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+/* Field: Content: Published */
+$handler->display->display_options['fields']['status']['id'] = 'status';
+$handler->display->display_options['fields']['status']['table'] = 'node';
+$handler->display->display_options['fields']['status']['field'] = 'status';
+$handler->display->display_options['fields']['status']['label'] = 'status';
+$handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['status']['type'] = 'boolean';
+$handler->display->display_options['fields']['status']['not'] = 0;
+/* Field: Node: Published at */
+$handler->display->display_options['fields']['published_at']['id'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['table'] = 'publication_date';
+$handler->display->display_options['fields']['published_at']['field'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['label'] = 'created';
+$handler->display->display_options['fields']['published_at']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['published_at']['date_format'] = 'custom';
+$handler->display->display_options['fields']['published_at']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['published_at']['second_date_format'] = 'long';
+/* Field: Content revision: Updated date */
+$handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+$handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['label'] = 'changed';
+$handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+$handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+/* Field: Content: Promoted to front page */
+$handler->display->display_options['fields']['promote']['id'] = 'promote';
+$handler->display->display_options['fields']['promote']['table'] = 'node';
+$handler->display->display_options['fields']['promote']['field'] = 'promote';
+$handler->display->display_options['fields']['promote']['label'] = 'promote';
+$handler->display->display_options['fields']['promote']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['promote']['type'] = 'boolean';
+$handler->display->display_options['fields']['promote']['not'] = 0;
+/* Field: Content: Sticky */
+$handler->display->display_options['fields']['sticky']['id'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['table'] = 'node';
+$handler->display->display_options['fields']['sticky']['field'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['label'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sticky']['type'] = 'boolean';
+$handler->display->display_options['fields']['sticky']['not'] = 0;
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_min1']['id'] = 'field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1']['table'] = 'field_data_field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1']['field'] = 'field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1']['relationship'] = 'field_boardmtg_min_value';
+$handler->display->display_options['fields']['field_boardmtg_min1']['label'] = 'fileid';
+$handler->display->display_options['fields']['field_boardmtg_min1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_min1']['alter']['text'] = '[field_boardmtg_min1-fid]';
+$handler->display->display_options['fields']['field_boardmtg_min1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_min1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['id'] = 'field_boardmtg_min1_1';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['table'] = 'field_data_field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['field'] = 'field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['relationship'] = 'field_boardmtg_min_value';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['label'] = 'file_display';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['alter']['text'] = '[field_boardmtg_min1_1-display]';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['click_sort_column'] = 'fid';
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'board_bundle' => 'board_bundle',
+);
+$handler->display->display_options['filters']['type']['group'] = 1;
+
+/* Display: Agenda */
+$handler = $view->new_display('views_data_export', 'Agenda', 'agenda');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Agenda';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+$handler->display->display_options['style_options']['provide_file'] = 1;
+$handler->display->display_options['style_options']['filename'] = '%display.csv';
+$handler->display->display_options['style_options']['parent_sort'] = 0;
+$handler->display->display_options['style_options']['quote'] = 1;
+$handler->display->display_options['style_options']['trim'] = 0;
+$handler->display->display_options['style_options']['replace_newlines'] = 0;
+$handler->display->display_options['style_options']['newline_token'] = '1';
+$handler->display->display_options['style_options']['header'] = 1;
+$handler->display->display_options['style_options']['keep_html'] = 0;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Relationship: Content: Agenda (field_boardmtg_agenda) */
+$handler->display->display_options['relationships']['field_boardmtg_agenda_value']['id'] = 'field_boardmtg_agenda_value';
+$handler->display->display_options['relationships']['field_boardmtg_agenda_value']['table'] = 'field_data_field_boardmtg_agenda';
+$handler->display->display_options['relationships']['field_boardmtg_agenda_value']['field'] = 'field_boardmtg_agenda_value';
+$handler->display->display_options['relationships']['field_boardmtg_agenda_value']['delta'] = '-1';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Global: View result counter */
+$handler->display->display_options['fields']['counter']['id'] = 'counter';
+$handler->display->display_options['fields']['counter']['table'] = 'views';
+$handler->display->display_options['fields']['counter']['field'] = 'counter';
+$handler->display->display_options['fields']['counter']['label'] = 'id';
+$handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['counter']['counter_start'] = '0';
+$handler->display->display_options['fields']['counter']['reverse'] = 0;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = 'title';
+$handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['title']['alter']['text'] = 'Agenda - [title]';
+$handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'body';
+$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+/* Field: Content: Date */
+$handler->display->display_options['fields']['field_boardmtg_date']['id'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['table'] = 'field_data_field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['field'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['label'] = 'report_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_date']['settings'] = array(
+  'format_type' => 'universal_date',
+  'fromto' => 'both',
+  'multiple_number' => '',
+  'multiple_from' => '',
+  'multiple_to' => '',
+  'show_remaining_days' => 0,
+  'show_repeat_rule' => 'show',
+);
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+$handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+$handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing_1']['label'] = 'report_type';
+$handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'agenda';
+$handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+$handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+/* Field: Content: Published */
+$handler->display->display_options['fields']['status']['id'] = 'status';
+$handler->display->display_options['fields']['status']['table'] = 'node';
+$handler->display->display_options['fields']['status']['field'] = 'status';
+$handler->display->display_options['fields']['status']['label'] = 'status';
+$handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['status']['type'] = 'boolean';
+$handler->display->display_options['fields']['status']['not'] = 0;
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['id'] = 'field_boardmtg_agenda1';
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['table'] = 'field_data_field_boardmtg_agenda1';
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['field'] = 'field_boardmtg_agenda1';
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['relationship'] = 'field_boardmtg_agenda_value';
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['label'] = 'fileid';
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['alter']['text'] = '[field_boardmtg_agenda1-fid]';
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['alter']['trim_whitespace'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_agenda1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['id'] = 'field_boardmtg_agenda1_1';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['table'] = 'field_data_field_boardmtg_agenda1';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['field'] = 'field_boardmtg_agenda1';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['relationship'] = 'field_boardmtg_agenda_value';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['label'] = 'file_display';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['alter']['text'] = '[field_boardmtg_agenda1_1-display]';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_agenda1_1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['id'] = 'field_boardmtg_agenda1_2';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['table'] = 'field_data_field_boardmtg_agenda1';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['field'] = 'field_boardmtg_agenda1';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['relationship'] = 'field_boardmtg_agenda_value';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['label'] = 'fiel_desc';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['alter']['text'] = '[field_boardmtg_agenda1_2-description]';
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['alter']['trim_whitespace'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_agenda1_2']['click_sort_column'] = 'fid';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'board_bundle' => 'board_bundle',
+);
+$handler->display->display_options['filters']['type']['group'] = 1;
+/* Filter criterion: Field collection item: PDF (field_boardmtg_agenda1:fid) */
+$handler->display->display_options['filters']['field_boardmtg_agenda1_fid']['id'] = 'field_boardmtg_agenda1_fid';
+$handler->display->display_options['filters']['field_boardmtg_agenda1_fid']['table'] = 'field_data_field_boardmtg_agenda1';
+$handler->display->display_options['filters']['field_boardmtg_agenda1_fid']['field'] = 'field_boardmtg_agenda1_fid';
+$handler->display->display_options['filters']['field_boardmtg_agenda1_fid']['relationship'] = 'field_boardmtg_agenda_value';
+$handler->display->display_options['filters']['field_boardmtg_agenda1_fid']['operator'] = 'not empty';
+$handler->display->display_options['path'] = 'export/agenda.csv';
+$handler->display->display_options['sitename_title'] = 0;
+
+/* Display: Minutes */
+$handler = $view->new_display('views_data_export', 'Minutes', 'minutes');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Minutes';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+$handler->display->display_options['style_options']['provide_file'] = 1;
+$handler->display->display_options['style_options']['filename'] = '%display.csv';
+$handler->display->display_options['style_options']['parent_sort'] = 0;
+$handler->display->display_options['style_options']['quote'] = 1;
+$handler->display->display_options['style_options']['trim'] = 0;
+$handler->display->display_options['style_options']['replace_newlines'] = 0;
+$handler->display->display_options['style_options']['newline_token'] = '1';
+$handler->display->display_options['style_options']['header'] = 1;
+$handler->display->display_options['style_options']['keep_html'] = 0;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Relationship: Content: Minutes (field_boardmtg_min) */
+$handler->display->display_options['relationships']['field_boardmtg_min_value']['id'] = 'field_boardmtg_min_value';
+$handler->display->display_options['relationships']['field_boardmtg_min_value']['table'] = 'field_data_field_boardmtg_min';
+$handler->display->display_options['relationships']['field_boardmtg_min_value']['field'] = 'field_boardmtg_min_value';
+$handler->display->display_options['relationships']['field_boardmtg_min_value']['delta'] = '-1';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['label'] = 'id';
+$handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+/* Field: Content revision: Vid */
+$handler->display->display_options['fields']['vid']['id'] = 'vid';
+$handler->display->display_options['fields']['vid']['table'] = 'node_revision';
+$handler->display->display_options['fields']['vid']['field'] = 'vid';
+$handler->display->display_options['fields']['vid']['label'] = 'vid';
+$handler->display->display_options['fields']['vid']['element_label_colon'] = FALSE;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = 'title';
+$handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['title']['alter']['text'] = 'Minutes - [title]';
+$handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'body';
+$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+/* Field: Content: Date */
+$handler->display->display_options['fields']['field_boardmtg_date']['id'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['table'] = 'field_data_field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['field'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['label'] = 'report_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_date']['settings'] = array(
+  'format_type' => 'universal_date',
+  'fromto' => 'both',
+  'multiple_number' => '',
+  'multiple_from' => '',
+  'multiple_to' => '',
+  'show_remaining_days' => 0,
+  'show_repeat_rule' => 'show',
+);
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+$handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+$handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing_1']['label'] = 'report_type';
+$handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'minutes';
+$handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+$handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+/* Field: Content: Published */
+$handler->display->display_options['fields']['status']['id'] = 'status';
+$handler->display->display_options['fields']['status']['table'] = 'node';
+$handler->display->display_options['fields']['status']['field'] = 'status';
+$handler->display->display_options['fields']['status']['label'] = 'status';
+$handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['status']['type'] = 'boolean';
+$handler->display->display_options['fields']['status']['not'] = 0;
+/* Field: Node: Published at */
+$handler->display->display_options['fields']['published_at']['id'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['table'] = 'publication_date';
+$handler->display->display_options['fields']['published_at']['field'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['label'] = 'created';
+$handler->display->display_options['fields']['published_at']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['published_at']['date_format'] = 'custom';
+$handler->display->display_options['fields']['published_at']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['published_at']['second_date_format'] = 'long';
+/* Field: Content revision: Updated date */
+$handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+$handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['label'] = 'changed';
+$handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+$handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+/* Field: Content: Promoted to front page */
+$handler->display->display_options['fields']['promote']['id'] = 'promote';
+$handler->display->display_options['fields']['promote']['table'] = 'node';
+$handler->display->display_options['fields']['promote']['field'] = 'promote';
+$handler->display->display_options['fields']['promote']['label'] = 'promote';
+$handler->display->display_options['fields']['promote']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['promote']['type'] = 'boolean';
+$handler->display->display_options['fields']['promote']['not'] = 0;
+/* Field: Content: Sticky */
+$handler->display->display_options['fields']['sticky']['id'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['table'] = 'node';
+$handler->display->display_options['fields']['sticky']['field'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['label'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sticky']['type'] = 'boolean';
+$handler->display->display_options['fields']['sticky']['not'] = 0;
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_min1']['id'] = 'field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1']['table'] = 'field_data_field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1']['field'] = 'field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1']['relationship'] = 'field_boardmtg_min_value';
+$handler->display->display_options['fields']['field_boardmtg_min1']['label'] = 'fileid';
+$handler->display->display_options['fields']['field_boardmtg_min1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_min1']['alter']['text'] = '[field_boardmtg_min1-fid]';
+$handler->display->display_options['fields']['field_boardmtg_min1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_min1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['id'] = 'field_boardmtg_min1_1';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['table'] = 'field_data_field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['field'] = 'field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['relationship'] = 'field_boardmtg_min_value';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['label'] = 'file_display';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['alter']['text'] = '[field_boardmtg_min1_1-display]';
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_min1_1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_min1_2']['id'] = 'field_boardmtg_min1_2';
+$handler->display->display_options['fields']['field_boardmtg_min1_2']['table'] = 'field_data_field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1_2']['field'] = 'field_boardmtg_min1';
+$handler->display->display_options['fields']['field_boardmtg_min1_2']['relationship'] = 'field_boardmtg_min_value';
+$handler->display->display_options['fields']['field_boardmtg_min1_2']['label'] = 'file_desc';
+$handler->display->display_options['fields']['field_boardmtg_min1_2']['alter']['text'] = '[field_boardmtg_min1_2-description]';
+$handler->display->display_options['fields']['field_boardmtg_min1_2']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_min1_2']['click_sort_column'] = 'fid';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'board_bundle' => 'board_bundle',
+);
+$handler->display->display_options['filters']['type']['group'] = 1;
+/* Filter criterion: Field collection item: PDF (field_boardmtg_min1:fid) */
+$handler->display->display_options['filters']['field_boardmtg_min1_fid']['id'] = 'field_boardmtg_min1_fid';
+$handler->display->display_options['filters']['field_boardmtg_min1_fid']['table'] = 'field_data_field_boardmtg_min1';
+$handler->display->display_options['filters']['field_boardmtg_min1_fid']['field'] = 'field_boardmtg_min1_fid';
+$handler->display->display_options['filters']['field_boardmtg_min1_fid']['relationship'] = 'field_boardmtg_min_value';
+$handler->display->display_options['filters']['field_boardmtg_min1_fid']['operator'] = 'not empty';
+$handler->display->display_options['path'] = 'export/minutes.csv';
+$handler->display->display_options['sitename_title'] = 0;
+
+/* Display: Board Report */
+$handler = $view->new_display('views_data_export', 'Board Report', 'board_report');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Board Report';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+$handler->display->display_options['style_options']['provide_file'] = 1;
+$handler->display->display_options['style_options']['filename'] = '%display.csv';
+$handler->display->display_options['style_options']['parent_sort'] = 0;
+$handler->display->display_options['style_options']['quote'] = 1;
+$handler->display->display_options['style_options']['trim'] = 0;
+$handler->display->display_options['style_options']['replace_newlines'] = 0;
+$handler->display->display_options['style_options']['newline_token'] = '1';
+$handler->display->display_options['style_options']['header'] = 1;
+$handler->display->display_options['style_options']['keep_html'] = 0;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Relationship: Content: Board Report (field_boardmtg_report) */
+$handler->display->display_options['relationships']['field_boardmtg_report_value']['id'] = 'field_boardmtg_report_value';
+$handler->display->display_options['relationships']['field_boardmtg_report_value']['table'] = 'field_data_field_boardmtg_report';
+$handler->display->display_options['relationships']['field_boardmtg_report_value']['field'] = 'field_boardmtg_report_value';
+$handler->display->display_options['relationships']['field_boardmtg_report_value']['delta'] = '-1';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['label'] = 'id';
+$handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+/* Field: Content revision: Vid */
+$handler->display->display_options['fields']['vid']['id'] = 'vid';
+$handler->display->display_options['fields']['vid']['table'] = 'node_revision';
+$handler->display->display_options['fields']['vid']['field'] = 'vid';
+$handler->display->display_options['fields']['vid']['label'] = 'vid';
+$handler->display->display_options['fields']['vid']['element_label_colon'] = FALSE;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = 'title';
+$handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['title']['alter']['text'] = 'Board Report - [title]';
+$handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'body';
+$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+/* Field: Content: Date */
+$handler->display->display_options['fields']['field_boardmtg_date']['id'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['table'] = 'field_data_field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['field'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['label'] = 'report_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_date']['settings'] = array(
+  'format_type' => 'ymd',
+  'fromto' => 'both',
+  'multiple_number' => '',
+  'multiple_from' => '',
+  'multiple_to' => '',
+  'show_remaining_days' => 0,
+  'show_repeat_rule' => 'show',
+);
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+$handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+$handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing_1']['label'] = 'report_type';
+$handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'board';
+$handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+$handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+/* Field: Content: Published */
+$handler->display->display_options['fields']['status']['id'] = 'status';
+$handler->display->display_options['fields']['status']['table'] = 'node';
+$handler->display->display_options['fields']['status']['field'] = 'status';
+$handler->display->display_options['fields']['status']['label'] = 'status';
+$handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['status']['type'] = 'boolean';
+$handler->display->display_options['fields']['status']['not'] = 0;
+/* Field: Node: Published at */
+$handler->display->display_options['fields']['published_at']['id'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['table'] = 'publication_date';
+$handler->display->display_options['fields']['published_at']['field'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['label'] = 'created';
+$handler->display->display_options['fields']['published_at']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['published_at']['date_format'] = 'custom';
+$handler->display->display_options['fields']['published_at']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['published_at']['second_date_format'] = 'long';
+/* Field: Content revision: Updated date */
+$handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+$handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['label'] = 'changed';
+$handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+$handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+/* Field: Content: Promoted to front page */
+$handler->display->display_options['fields']['promote']['id'] = 'promote';
+$handler->display->display_options['fields']['promote']['table'] = 'node';
+$handler->display->display_options['fields']['promote']['field'] = 'promote';
+$handler->display->display_options['fields']['promote']['label'] = 'promote';
+$handler->display->display_options['fields']['promote']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['promote']['type'] = 'boolean';
+$handler->display->display_options['fields']['promote']['not'] = 0;
+/* Field: Content: Sticky */
+$handler->display->display_options['fields']['sticky']['id'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['table'] = 'node';
+$handler->display->display_options['fields']['sticky']['field'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['label'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sticky']['type'] = 'boolean';
+$handler->display->display_options['fields']['sticky']['not'] = 0;
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_report1']['id'] = 'field_boardmtg_report1';
+$handler->display->display_options['fields']['field_boardmtg_report1']['table'] = 'field_data_field_boardmtg_report1';
+$handler->display->display_options['fields']['field_boardmtg_report1']['field'] = 'field_boardmtg_report1';
+$handler->display->display_options['fields']['field_boardmtg_report1']['relationship'] = 'field_boardmtg_report_value';
+$handler->display->display_options['fields']['field_boardmtg_report1']['label'] = 'fileid';
+$handler->display->display_options['fields']['field_boardmtg_report1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_report1']['alter']['text'] = '[field_boardmtg_report1-fid] ';
+$handler->display->display_options['fields']['field_boardmtg_report1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_report1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_report1_1']['id'] = 'field_boardmtg_report1_1';
+$handler->display->display_options['fields']['field_boardmtg_report1_1']['table'] = 'field_data_field_boardmtg_report1';
+$handler->display->display_options['fields']['field_boardmtg_report1_1']['field'] = 'field_boardmtg_report1';
+$handler->display->display_options['fields']['field_boardmtg_report1_1']['relationship'] = 'field_boardmtg_report_value';
+$handler->display->display_options['fields']['field_boardmtg_report1_1']['label'] = 'file_display';
+$handler->display->display_options['fields']['field_boardmtg_report1_1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_report1_1']['alter']['text'] = '[field_boardmtg_report1_1-display]';
+$handler->display->display_options['fields']['field_boardmtg_report1_1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['id'] = 'field_boardmtg_report1_2';
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['table'] = 'field_data_field_boardmtg_report1';
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['field'] = 'field_boardmtg_report1';
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['relationship'] = 'field_boardmtg_report_value';
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['label'] = 'file_desc';
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['alter']['text'] = '[field_boardmtg_report1_2-description]';
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_report1_2']['click_sort_column'] = 'fid';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'board_bundle' => 'board_bundle',
+);
+$handler->display->display_options['filters']['type']['group'] = 1;
+/* Filter criterion: Field collection item: PDF (field_boardmtg_report1:fid) */
+$handler->display->display_options['filters']['field_boardmtg_report1_fid']['id'] = 'field_boardmtg_report1_fid';
+$handler->display->display_options['filters']['field_boardmtg_report1_fid']['table'] = 'field_data_field_boardmtg_report1';
+$handler->display->display_options['filters']['field_boardmtg_report1_fid']['field'] = 'field_boardmtg_report1_fid';
+$handler->display->display_options['filters']['field_boardmtg_report1_fid']['relationship'] = 'field_boardmtg_report_value';
+$handler->display->display_options['filters']['field_boardmtg_report1_fid']['operator'] = 'not empty';
+$handler->display->display_options['path'] = 'export/board.csv';
+$handler->display->display_options['sitename_title'] = 0;
+
+/* Display: Librarian Report */
+$handler = $view->new_display('views_data_export', 'Librarian Report', 'librarian_report');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Librarian Report';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+$handler->display->display_options['style_options']['provide_file'] = 1;
+$handler->display->display_options['style_options']['filename'] = '%display.csv';
+$handler->display->display_options['style_options']['parent_sort'] = 0;
+$handler->display->display_options['style_options']['quote'] = 1;
+$handler->display->display_options['style_options']['trim'] = 0;
+$handler->display->display_options['style_options']['replace_newlines'] = 0;
+$handler->display->display_options['style_options']['newline_token'] = '1';
+$handler->display->display_options['style_options']['header'] = 1;
+$handler->display->display_options['style_options']['keep_html'] = 0;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Relationship: Content: County Librarian Report (field_boardmtg_colib_report) */
+$handler->display->display_options['relationships']['field_boardmtg_colib_report_value']['id'] = 'field_boardmtg_colib_report_value';
+$handler->display->display_options['relationships']['field_boardmtg_colib_report_value']['table'] = 'field_data_field_boardmtg_colib_report';
+$handler->display->display_options['relationships']['field_boardmtg_colib_report_value']['field'] = 'field_boardmtg_colib_report_value';
+$handler->display->display_options['relationships']['field_boardmtg_colib_report_value']['delta'] = '-1';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['label'] = 'id';
+$handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+/* Field: Content revision: Vid */
+$handler->display->display_options['fields']['vid']['id'] = 'vid';
+$handler->display->display_options['fields']['vid']['table'] = 'node_revision';
+$handler->display->display_options['fields']['vid']['field'] = 'vid';
+$handler->display->display_options['fields']['vid']['label'] = 'vid';
+$handler->display->display_options['fields']['vid']['element_label_colon'] = FALSE;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = 'title';
+$handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['title']['alter']['text'] = 'Librarian Report - [title]';
+$handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'body';
+$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+/* Field: Content: Date */
+$handler->display->display_options['fields']['field_boardmtg_date']['id'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['table'] = 'field_data_field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['field'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['label'] = 'report_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_date']['settings'] = array(
+  'format_type' => 'universal_date',
+  'fromto' => 'both',
+  'multiple_number' => '',
+  'multiple_from' => '',
+  'multiple_to' => '',
+  'show_remaining_days' => 0,
+  'show_repeat_rule' => 'show',
+);
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+$handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+$handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing_1']['label'] = 'report_type';
+$handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'librarian';
+$handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+$handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+/* Field: Content: Published */
+$handler->display->display_options['fields']['status']['id'] = 'status';
+$handler->display->display_options['fields']['status']['table'] = 'node';
+$handler->display->display_options['fields']['status']['field'] = 'status';
+$handler->display->display_options['fields']['status']['label'] = 'status';
+$handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['status']['type'] = 'boolean';
+$handler->display->display_options['fields']['status']['not'] = 0;
+/* Field: Node: Published at */
+$handler->display->display_options['fields']['published_at']['id'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['table'] = 'publication_date';
+$handler->display->display_options['fields']['published_at']['field'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['label'] = 'created';
+$handler->display->display_options['fields']['published_at']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['published_at']['date_format'] = 'custom';
+$handler->display->display_options['fields']['published_at']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['published_at']['second_date_format'] = 'long';
+/* Field: Content revision: Updated date */
+$handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+$handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['label'] = 'changed';
+$handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+$handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+/* Field: Content: Promoted to front page */
+$handler->display->display_options['fields']['promote']['id'] = 'promote';
+$handler->display->display_options['fields']['promote']['table'] = 'node';
+$handler->display->display_options['fields']['promote']['field'] = 'promote';
+$handler->display->display_options['fields']['promote']['label'] = 'promote';
+$handler->display->display_options['fields']['promote']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['promote']['type'] = 'boolean';
+$handler->display->display_options['fields']['promote']['not'] = 0;
+/* Field: Content: Sticky */
+$handler->display->display_options['fields']['sticky']['id'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['table'] = 'node';
+$handler->display->display_options['fields']['sticky']['field'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['label'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sticky']['type'] = 'boolean';
+$handler->display->display_options['fields']['sticky']['not'] = 0;
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['id'] = 'field_boardmtg_colib_report1';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['table'] = 'field_data_field_boardmtg_colib_report1';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['field'] = 'field_boardmtg_colib_report1';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['relationship'] = 'field_boardmtg_colib_report_value';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['label'] = 'fileid';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['alter']['text'] = '[field_boardmtg_colib_report1-fid]';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_colib_report1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['id'] = 'field_boardmtg_colib_report1_1';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['table'] = 'field_data_field_boardmtg_colib_report1';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['field'] = 'field_boardmtg_colib_report1';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['relationship'] = 'field_boardmtg_colib_report_value';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['label'] = 'file_display';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['alter']['text'] = '[field_boardmtg_colib_report1_1-display]';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['id'] = 'field_boardmtg_colib_report1_2';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['table'] = 'field_data_field_boardmtg_colib_report1';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['field'] = 'field_boardmtg_colib_report1';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['relationship'] = 'field_boardmtg_colib_report_value';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['label'] = 'file_desc';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['alter']['text'] = '[field_boardmtg_colib_report1_2-description]';
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_colib_report1_2']['click_sort_column'] = 'fid';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'board_bundle' => 'board_bundle',
+);
+$handler->display->display_options['filters']['type']['group'] = 1;
+/* Filter criterion: Field collection item: PDF (field_boardmtg_colib_report1:fid) */
+$handler->display->display_options['filters']['field_boardmtg_colib_report1_fid']['id'] = 'field_boardmtg_colib_report1_fid';
+$handler->display->display_options['filters']['field_boardmtg_colib_report1_fid']['table'] = 'field_data_field_boardmtg_colib_report1';
+$handler->display->display_options['filters']['field_boardmtg_colib_report1_fid']['field'] = 'field_boardmtg_colib_report1_fid';
+$handler->display->display_options['filters']['field_boardmtg_colib_report1_fid']['relationship'] = 'field_boardmtg_colib_report_value';
+$handler->display->display_options['filters']['field_boardmtg_colib_report1_fid']['operator'] = 'not empty';
+$handler->display->display_options['path'] = 'export/librarian.csv';
+$handler->display->display_options['sitename_title'] = 0;
+
+/* Display: Statistics */
+$handler = $view->new_display('views_data_export', 'Statistics', 'statistics');
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+$handler->display->display_options['style_options']['provide_file'] = 1;
+$handler->display->display_options['style_options']['filename'] = '%display.csv';
+$handler->display->display_options['style_options']['parent_sort'] = 0;
+$handler->display->display_options['style_options']['quote'] = 1;
+$handler->display->display_options['style_options']['trim'] = 0;
+$handler->display->display_options['style_options']['replace_newlines'] = 0;
+$handler->display->display_options['style_options']['newline_token'] = '1';
+$handler->display->display_options['style_options']['header'] = 1;
+$handler->display->display_options['style_options']['keep_html'] = 0;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Relationship: Content: Statistics (field_boardmtg_stats) */
+$handler->display->display_options['relationships']['field_boardmtg_stats_value']['id'] = 'field_boardmtg_stats_value';
+$handler->display->display_options['relationships']['field_boardmtg_stats_value']['table'] = 'field_data_field_boardmtg_stats';
+$handler->display->display_options['relationships']['field_boardmtg_stats_value']['field'] = 'field_boardmtg_stats_value';
+$handler->display->display_options['relationships']['field_boardmtg_stats_value']['delta'] = '-1';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['label'] = 'id';
+$handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+/* Field: Content revision: Vid */
+$handler->display->display_options['fields']['vid']['id'] = 'vid';
+$handler->display->display_options['fields']['vid']['table'] = 'node_revision';
+$handler->display->display_options['fields']['vid']['field'] = 'vid';
+$handler->display->display_options['fields']['vid']['label'] = 'vid';
+$handler->display->display_options['fields']['vid']['element_label_colon'] = FALSE;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = 'title';
+$handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['title']['alter']['text'] = 'Statistics - [title]';
+$handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'body';
+$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+/* Field: Content: Date */
+$handler->display->display_options['fields']['field_boardmtg_date']['id'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['table'] = 'field_data_field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['field'] = 'field_boardmtg_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['label'] = 'report_date';
+$handler->display->display_options['fields']['field_boardmtg_date']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_date']['settings'] = array(
+  'format_type' => 'universal_date',
+  'fromto' => 'both',
+  'multiple_number' => '',
+  'multiple_from' => '',
+  'multiple_to' => '',
+  'show_remaining_days' => 0,
+  'show_repeat_rule' => 'show',
+);
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+$handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+$handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing_1']['label'] = 'report_type';
+$handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'statistics';
+$handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+$handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+/* Field: Content: Published */
+$handler->display->display_options['fields']['status']['id'] = 'status';
+$handler->display->display_options['fields']['status']['table'] = 'node';
+$handler->display->display_options['fields']['status']['field'] = 'status';
+$handler->display->display_options['fields']['status']['label'] = 'status';
+$handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['status']['type'] = 'boolean';
+$handler->display->display_options['fields']['status']['not'] = 0;
+/* Field: Node: Published at */
+$handler->display->display_options['fields']['published_at']['id'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['table'] = 'publication_date';
+$handler->display->display_options['fields']['published_at']['field'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['label'] = 'created';
+$handler->display->display_options['fields']['published_at']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['published_at']['date_format'] = 'custom';
+$handler->display->display_options['fields']['published_at']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['published_at']['second_date_format'] = 'long';
+/* Field: Content revision: Updated date */
+$handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+$handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['label'] = 'changed';
+$handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+$handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+/* Field: Content: Promoted to front page */
+$handler->display->display_options['fields']['promote']['id'] = 'promote';
+$handler->display->display_options['fields']['promote']['table'] = 'node';
+$handler->display->display_options['fields']['promote']['field'] = 'promote';
+$handler->display->display_options['fields']['promote']['label'] = 'promote';
+$handler->display->display_options['fields']['promote']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['promote']['type'] = 'boolean';
+$handler->display->display_options['fields']['promote']['not'] = 0;
+/* Field: Content: Sticky */
+$handler->display->display_options['fields']['sticky']['id'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['table'] = 'node';
+$handler->display->display_options['fields']['sticky']['field'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['label'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sticky']['type'] = 'boolean';
+$handler->display->display_options['fields']['sticky']['not'] = 0;
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_stats1']['id'] = 'field_boardmtg_stats1';
+$handler->display->display_options['fields']['field_boardmtg_stats1']['table'] = 'field_data_field_boardmtg_stats1';
+$handler->display->display_options['fields']['field_boardmtg_stats1']['field'] = 'field_boardmtg_stats1';
+$handler->display->display_options['fields']['field_boardmtg_stats1']['relationship'] = 'field_boardmtg_stats_value';
+$handler->display->display_options['fields']['field_boardmtg_stats1']['label'] = 'fileid';
+$handler->display->display_options['fields']['field_boardmtg_stats1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_stats1']['alter']['text'] = '[field_boardmtg_stats1-fid]';
+$handler->display->display_options['fields']['field_boardmtg_stats1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_stats1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['id'] = 'field_boardmtg_stats1_1';
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['table'] = 'field_data_field_boardmtg_stats1';
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['field'] = 'field_boardmtg_stats1';
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['relationship'] = 'field_boardmtg_stats_value';
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['label'] = 'file_display';
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['alter']['text'] = '[field_boardmtg_stats1_1-display]';
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_stats1_1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: PDF */
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['id'] = 'field_boardmtg_stats1_2';
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['table'] = 'field_data_field_boardmtg_stats1';
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['field'] = 'field_boardmtg_stats1';
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['relationship'] = 'field_boardmtg_stats_value';
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['label'] = 'file_desc';
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['alter']['text'] = '[field_boardmtg_stats1_2-description]';
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_boardmtg_stats1_2']['click_sort_column'] = 'fid';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'board_bundle' => 'board_bundle',
+);
+$handler->display->display_options['filters']['type']['group'] = 1;
+/* Filter criterion: Field collection item: PDF (field_boardmtg_stats1:fid) */
+$handler->display->display_options['filters']['field_boardmtg_stats1_fid']['id'] = 'field_boardmtg_stats1_fid';
+$handler->display->display_options['filters']['field_boardmtg_stats1_fid']['table'] = 'field_data_field_boardmtg_stats1';
+$handler->display->display_options['filters']['field_boardmtg_stats1_fid']['field'] = 'field_boardmtg_stats1_fid';
+$handler->display->display_options['filters']['field_boardmtg_stats1_fid']['relationship'] = 'field_boardmtg_stats_value';
+$handler->display->display_options['filters']['field_boardmtg_stats1_fid']['operator'] = 'not empty';
+$handler->display->display_options['path'] = 'export/stats.csv';
+$handler->display->display_options['sitename_title'] = 0;
+
+/* Display: elementia */
+$handler = $view->new_display('views_data_export', 'elementia', 'elementia');
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+$handler->display->display_options['style_options']['provide_file'] = 1;
+$handler->display->display_options['style_options']['filename'] = '%display.csv';
+$handler->display->display_options['style_options']['parent_sort'] = 0;
+$handler->display->display_options['style_options']['quote'] = 1;
+$handler->display->display_options['style_options']['trim'] = 0;
+$handler->display->display_options['style_options']['replace_newlines'] = 0;
+$handler->display->display_options['style_options']['newline_token'] = '1';
+$handler->display->display_options['style_options']['header'] = 1;
+$handler->display->display_options['style_options']['keep_html'] = 0;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Relationship: Content: Issue List (field_elementia_issue_list) */
+$handler->display->display_options['relationships']['field_elementia_issue_list_value']['id'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['relationships']['field_elementia_issue_list_value']['table'] = 'field_data_field_elementia_issue_list';
+$handler->display->display_options['relationships']['field_elementia_issue_list_value']['field'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['relationships']['field_elementia_issue_list_value']['delta'] = '-1';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['label'] = 'id';
+$handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+/* Field: Content revision: Vid */
+$handler->display->display_options['fields']['vid']['id'] = 'vid';
+$handler->display->display_options['fields']['vid']['table'] = 'node_revision';
+$handler->display->display_options['fields']['vid']['field'] = 'vid';
+$handler->display->display_options['fields']['vid']['label'] = 'vid';
+$handler->display->display_options['fields']['vid']['element_label_colon'] = FALSE;
+/* Field: Field collection item: Issue Caption */
+$handler->display->display_options['fields']['field_elementia_caption_1']['id'] = 'field_elementia_caption_1';
+$handler->display->display_options['fields']['field_elementia_caption_1']['table'] = 'field_data_field_elementia_caption';
+$handler->display->display_options['fields']['field_elementia_caption_1']['field'] = 'field_elementia_caption';
+$handler->display->display_options['fields']['field_elementia_caption_1']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['fields']['field_elementia_caption_1']['label'] = 'title';
+$handler->display->display_options['fields']['field_elementia_caption_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_elementia_caption_1']['type'] = 'text_plain';
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'body';
+$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+$handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+/* Field: Content: Published */
+$handler->display->display_options['fields']['status']['id'] = 'status';
+$handler->display->display_options['fields']['status']['table'] = 'node';
+$handler->display->display_options['fields']['status']['field'] = 'status';
+$handler->display->display_options['fields']['status']['label'] = 'status';
+$handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['status']['type'] = 'boolean';
+$handler->display->display_options['fields']['status']['not'] = 0;
+/* Field: Node: Published at */
+$handler->display->display_options['fields']['published_at']['id'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['table'] = 'publication_date';
+$handler->display->display_options['fields']['published_at']['field'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['label'] = 'created';
+$handler->display->display_options['fields']['published_at']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['published_at']['date_format'] = 'custom';
+$handler->display->display_options['fields']['published_at']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['published_at']['second_date_format'] = 'long';
+/* Field: Content revision: Updated date */
+$handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+$handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['label'] = 'changed';
+$handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+$handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+/* Field: Content: Promoted to front page */
+$handler->display->display_options['fields']['promote']['id'] = 'promote';
+$handler->display->display_options['fields']['promote']['table'] = 'node';
+$handler->display->display_options['fields']['promote']['field'] = 'promote';
+$handler->display->display_options['fields']['promote']['label'] = 'promote';
+$handler->display->display_options['fields']['promote']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['promote']['type'] = 'boolean';
+$handler->display->display_options['fields']['promote']['not'] = 0;
+/* Field: Content: Sticky */
+$handler->display->display_options['fields']['sticky']['id'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['table'] = 'node';
+$handler->display->display_options['fields']['sticky']['field'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['label'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sticky']['type'] = 'boolean';
+$handler->display->display_options['fields']['sticky']['not'] = 0;
+/* Field: Field collection item: Issue Caption */
+$handler->display->display_options['fields']['field_elementia_caption']['id'] = 'field_elementia_caption';
+$handler->display->display_options['fields']['field_elementia_caption']['table'] = 'field_data_field_elementia_caption';
+$handler->display->display_options['fields']['field_elementia_caption']['field'] = 'field_elementia_caption';
+$handler->display->display_options['fields']['field_elementia_caption']['relationship'] = 'field_elementia_issue_list_value';
+/* Field: Field collection item: Issue File */
+$handler->display->display_options['fields']['field_elementia_file']['id'] = 'field_elementia_file';
+$handler->display->display_options['fields']['field_elementia_file']['table'] = 'field_data_field_elementia_file';
+$handler->display->display_options['fields']['field_elementia_file']['field'] = 'field_elementia_file';
+$handler->display->display_options['fields']['field_elementia_file']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['fields']['field_elementia_file']['label'] = 'file_id';
+$handler->display->display_options['fields']['field_elementia_file']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_elementia_file']['alter']['text'] = '[field_elementia_file-fid]';
+$handler->display->display_options['fields']['field_elementia_file']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_elementia_file']['click_sort_column'] = 'fid';
+/* Field: Field collection item: Issue File */
+$handler->display->display_options['fields']['field_elementia_file_1']['id'] = 'field_elementia_file_1';
+$handler->display->display_options['fields']['field_elementia_file_1']['table'] = 'field_data_field_elementia_file';
+$handler->display->display_options['fields']['field_elementia_file_1']['field'] = 'field_elementia_file';
+$handler->display->display_options['fields']['field_elementia_file_1']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['fields']['field_elementia_file_1']['label'] = 'file_display';
+$handler->display->display_options['fields']['field_elementia_file_1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_elementia_file_1']['alter']['text'] = '[field_elementia_file_1-display]';
+$handler->display->display_options['fields']['field_elementia_file_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_elementia_file_1']['click_sort_column'] = 'fid';
+/* Field: Field collection item: Issue File */
+$handler->display->display_options['fields']['field_elementia_file_2']['id'] = 'field_elementia_file_2';
+$handler->display->display_options['fields']['field_elementia_file_2']['table'] = 'field_data_field_elementia_file';
+$handler->display->display_options['fields']['field_elementia_file_2']['field'] = 'field_elementia_file';
+$handler->display->display_options['fields']['field_elementia_file_2']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['fields']['field_elementia_file_2']['label'] = 'file_desc';
+$handler->display->display_options['fields']['field_elementia_file_2']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_elementia_file_2']['alter']['text'] = '[field_elementia_file_2-description]';
+$handler->display->display_options['fields']['field_elementia_file_2']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_elementia_file_2']['click_sort_column'] = 'fid';
+/* Field: Field collection item: Issue Cover */
+$handler->display->display_options['fields']['field_elementia_cover']['id'] = 'field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover']['table'] = 'field_data_field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover']['field'] = 'field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['fields']['field_elementia_cover']['label'] = 'image_id';
+$handler->display->display_options['fields']['field_elementia_cover']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_elementia_cover']['alter']['text'] = '[field_elementia_cover-fid]';
+$handler->display->display_options['fields']['field_elementia_cover']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_elementia_cover']['click_sort_column'] = 'fid';
+$handler->display->display_options['fields']['field_elementia_cover']['settings'] = array(
+  'image_style' => '',
+  'image_link' => '',
+);
+/* Field: Field collection item: Issue Cover */
+$handler->display->display_options['fields']['field_elementia_cover_1']['id'] = 'field_elementia_cover_1';
+$handler->display->display_options['fields']['field_elementia_cover_1']['table'] = 'field_data_field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover_1']['field'] = 'field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover_1']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['fields']['field_elementia_cover_1']['label'] = 'alt';
+$handler->display->display_options['fields']['field_elementia_cover_1']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_elementia_cover_1']['alter']['text'] = '[field_elementia_cover_1-alt]';
+$handler->display->display_options['fields']['field_elementia_cover_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_elementia_cover_1']['click_sort_column'] = 'fid';
+$handler->display->display_options['fields']['field_elementia_cover_1']['settings'] = array(
+  'image_style' => '',
+  'image_link' => '',
+);
+/* Field: Field collection item: Issue Cover */
+$handler->display->display_options['fields']['field_elementia_cover_2']['id'] = 'field_elementia_cover_2';
+$handler->display->display_options['fields']['field_elementia_cover_2']['table'] = 'field_data_field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover_2']['field'] = 'field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover_2']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['fields']['field_elementia_cover_2']['label'] = 'width';
+$handler->display->display_options['fields']['field_elementia_cover_2']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_elementia_cover_2']['alter']['text'] = '[field_elementia_cover_2-width]';
+$handler->display->display_options['fields']['field_elementia_cover_2']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_elementia_cover_2']['click_sort_column'] = 'fid';
+$handler->display->display_options['fields']['field_elementia_cover_2']['settings'] = array(
+  'image_style' => '',
+  'image_link' => '',
+);
+/* Field: Field collection item: Issue Cover */
+$handler->display->display_options['fields']['field_elementia_cover_3']['id'] = 'field_elementia_cover_3';
+$handler->display->display_options['fields']['field_elementia_cover_3']['table'] = 'field_data_field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover_3']['field'] = 'field_elementia_cover';
+$handler->display->display_options['fields']['field_elementia_cover_3']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['fields']['field_elementia_cover_3']['label'] = 'height';
+$handler->display->display_options['fields']['field_elementia_cover_3']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_elementia_cover_3']['alter']['text'] = '[field_elementia_cover_3-height]';
+$handler->display->display_options['fields']['field_elementia_cover_3']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_elementia_cover_3']['click_sort_column'] = 'fid';
+$handler->display->display_options['fields']['field_elementia_cover_3']['settings'] = array(
+  'image_style' => '',
+  'image_link' => '',
+);
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'elementia_page' => 'elementia_page',
+);
+$handler->display->display_options['filters']['type']['group'] = 1;
+/* Filter criterion: Field collection item: Issue Cover (field_elementia_cover:fid) */
+$handler->display->display_options['filters']['field_elementia_cover_fid']['id'] = 'field_elementia_cover_fid';
+$handler->display->display_options['filters']['field_elementia_cover_fid']['table'] = 'field_data_field_elementia_cover';
+$handler->display->display_options['filters']['field_elementia_cover_fid']['field'] = 'field_elementia_cover_fid';
+$handler->display->display_options['filters']['field_elementia_cover_fid']['relationship'] = 'field_elementia_issue_list_value';
+$handler->display->display_options['filters']['field_elementia_cover_fid']['operator'] = 'not empty';
+$handler->display->display_options['path'] = 'export/elementia.csv';
+$handler->display->display_options['sitename_title'] = 0;
+
+/* Display: Listen Local */
+$handler = $view->new_display('views_data_export', 'Listen Local', 'listen_local_export');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Listen Local';
+$handler->display->display_options['defaults']['group_by'] = FALSE;
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+$handler->display->display_options['style_options']['provide_file'] = 0;
+$handler->display->display_options['style_options']['parent_sort'] = 0;
+$handler->display->display_options['style_options']['quote'] = 1;
+$handler->display->display_options['style_options']['trim'] = 1;
+$handler->display->display_options['style_options']['replace_newlines'] = 0;
+$handler->display->display_options['style_options']['newline_token'] = '1';
+$handler->display->display_options['style_options']['header'] = 1;
+$handler->display->display_options['style_options']['keep_html'] = 1;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['label'] = 'id';
+$handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+/* Field: Content revision: Vid */
+$handler->display->display_options['fields']['vid']['id'] = 'vid';
+$handler->display->display_options['fields']['vid']['table'] = 'node_revision';
+$handler->display->display_options['fields']['vid']['field'] = 'vid';
+$handler->display->display_options['fields']['vid']['label'] = 'vid';
+$handler->display->display_options['fields']['vid']['element_label_colon'] = FALSE;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = 'title';
+$handler->display->display_options['fields']['title']['alter']['text'] = '[title]';
+$handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+/* Field: Content: Local Music Content */
+$handler->display->display_options['fields']['field_local_music_content']['id'] = 'field_local_music_content';
+$handler->display->display_options['fields']['field_local_music_content']['table'] = 'field_data_field_local_music_content';
+$handler->display->display_options['fields']['field_local_music_content']['field'] = 'field_local_music_content';
+$handler->display->display_options['fields']['field_local_music_content']['exclude'] = TRUE;
+$handler->display->display_options['fields']['field_local_music_content']['alter']['trim_whitespace'] = TRUE;
+$handler->display->display_options['fields']['field_local_music_content']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['field_local_music_content']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_local_music_content']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['field_local_music_content']['settings'] = array(
+  'add' => '',
+  'edit' => '',
+  'translate' => '',
+  'delete' => '',
+  'description' => 0,
+  'view_mode' => 'full',
+);
+$handler->display->display_options['fields']['field_local_music_content']['delta_offset'] = '0';
+$handler->display->display_options['fields']['field_local_music_content']['separator'] = '';
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'body';
+$handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_local_music_content]';
+$handler->display->display_options['fields']['nothing']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
+/* Field: Content: Listen Local Live */
+$handler->display->display_options['fields']['field_listen_local_live']['id'] = 'field_listen_local_live';
+$handler->display->display_options['fields']['field_listen_local_live']['table'] = 'field_data_field_listen_local_live';
+$handler->display->display_options['fields']['field_listen_local_live']['field'] = 'field_listen_local_live';
+$handler->display->display_options['fields']['field_listen_local_live']['label'] = 'live';
+$handler->display->display_options['fields']['field_listen_local_live']['alter']['text'] = '[field_listen_local_live-value]';
+$handler->display->display_options['fields']['field_listen_local_live']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_listen_local_live']['type'] = 'list_key';
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+$handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+/* Field: Content: Published */
+$handler->display->display_options['fields']['status']['id'] = 'status';
+$handler->display->display_options['fields']['status']['table'] = 'node';
+$handler->display->display_options['fields']['status']['field'] = 'status';
+$handler->display->display_options['fields']['status']['label'] = 'status';
+$handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['status']['type'] = 'boolean';
+$handler->display->display_options['fields']['status']['not'] = 0;
+/* Field: Node: Published at */
+$handler->display->display_options['fields']['published_at']['id'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['table'] = 'publication_date';
+$handler->display->display_options['fields']['published_at']['field'] = 'published_at';
+$handler->display->display_options['fields']['published_at']['label'] = 'created';
+$handler->display->display_options['fields']['published_at']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['published_at']['date_format'] = 'custom';
+$handler->display->display_options['fields']['published_at']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['published_at']['second_date_format'] = 'long';
+/* Field: Content revision: Updated date */
+$handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+$handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['label'] = 'changed';
+$handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+$handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+/* Field: Content: Promoted to front page */
+$handler->display->display_options['fields']['promote']['id'] = 'promote';
+$handler->display->display_options['fields']['promote']['table'] = 'node';
+$handler->display->display_options['fields']['promote']['field'] = 'promote';
+$handler->display->display_options['fields']['promote']['label'] = 'promote';
+$handler->display->display_options['fields']['promote']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['promote']['type'] = 'boolean';
+$handler->display->display_options['fields']['promote']['not'] = 0;
+/* Field: Content: Sticky */
+$handler->display->display_options['fields']['sticky']['id'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['table'] = 'node';
+$handler->display->display_options['fields']['sticky']['field'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['label'] = 'sticky';
+$handler->display->display_options['fields']['sticky']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sticky']['type'] = 'boolean';
+$handler->display->display_options['fields']['sticky']['not'] = 0;
+/* Field: Field: Local Music Categories */
+$handler->display->display_options['fields']['field_local_music_categories']['id'] = 'field_local_music_categories';
+$handler->display->display_options['fields']['field_local_music_categories']['table'] = 'field_data_field_local_music_categories';
+$handler->display->display_options['fields']['field_local_music_categories']['field'] = 'field_local_music_categories';
+$handler->display->display_options['fields']['field_local_music_categories']['label'] = 'blog_categories';
+$handler->display->display_options['fields']['field_local_music_categories']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_local_music_categories']['type'] = 'taxonomy_term_reference_plain';
+$handler->display->display_options['fields']['field_local_music_categories']['delta_offset'] = '0';
+$handler->display->display_options['fields']['field_local_music_categories']['separator'] = '|';
+/* Field: Field: Local Music Tags */
+$handler->display->display_options['fields']['field_local_music_tags']['id'] = 'field_local_music_tags';
+$handler->display->display_options['fields']['field_local_music_tags']['table'] = 'field_data_field_local_music_tags';
+$handler->display->display_options['fields']['field_local_music_tags']['field'] = 'field_local_music_tags';
+$handler->display->display_options['fields']['field_local_music_tags']['label'] = 'blog_tags';
+$handler->display->display_options['fields']['field_local_music_tags']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_local_music_tags']['type'] = 'taxonomy_term_reference_plain';
+$handler->display->display_options['fields']['field_local_music_tags']['delta_offset'] = '0';
+$handler->display->display_options['fields']['field_local_music_tags']['separator'] = '|';
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+$handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+$handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing_1']['label'] = 'blog_type';
+$handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'Listen Local';
+$handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
+$handler->display->display_options['fields']['nothing_2']['table'] = 'views';
+$handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing_2']['label'] = 'audience';
+$handler->display->display_options['fields']['nothing_2']['alter']['text'] = 'Adult';
+$handler->display->display_options['fields']['nothing_2']['element_label_colon'] = FALSE;
+/* Field: Content: Path */
+$handler->display->display_options['fields']['path']['id'] = 'path';
+$handler->display->display_options['fields']['path']['table'] = 'node';
+$handler->display->display_options['fields']['path']['field'] = 'path';
+$handler->display->display_options['fields']['path']['label'] = 'path';
+$handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+/* Field: Content: Local Music website link */
+$handler->display->display_options['fields']['field_blog_link']['id'] = 'field_blog_link';
+$handler->display->display_options['fields']['field_blog_link']['table'] = 'field_data_field_blog_link';
+$handler->display->display_options['fields']['field_blog_link']['field'] = 'field_blog_link';
+$handler->display->display_options['fields']['field_blog_link']['label'] = 'website_url';
+$handler->display->display_options['fields']['field_blog_link']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_blog_link']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['field_blog_link']['click_sort_column'] = 'url';
+$handler->display->display_options['fields']['field_blog_link']['type'] = 'link_plain';
+/* Field: Content: Local Music website link */
+$handler->display->display_options['fields']['field_blog_link_1']['id'] = 'field_blog_link_1';
+$handler->display->display_options['fields']['field_blog_link_1']['table'] = 'field_data_field_blog_link';
+$handler->display->display_options['fields']['field_blog_link_1']['field'] = 'field_blog_link';
+$handler->display->display_options['fields']['field_blog_link_1']['label'] = 'website_title';
+$handler->display->display_options['fields']['field_blog_link_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_blog_link_1']['click_sort_column'] = 'url';
+$handler->display->display_options['fields']['field_blog_link_1']['type'] = 'link_title_plain';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'local_blogs_music' => 'local_blogs_music',
+);
+$handler->display->display_options['filters']['type']['group'] = 1;
+$handler->display->display_options['path'] = 'export/listen_local.csv';
+$handler->display->display_options['sitename_title'] = 0;

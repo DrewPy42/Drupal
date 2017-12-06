@@ -41,12 +41,12 @@ process:
   field_user_location:
     plugin: location_convert
     source: field_useracct_locnoderef
-  field_user_department: 
+  field_user_department:
     plugin: iterator
     source: field_useracct_department
     process:
       target_id: tid
-  field_user_branchmanager: manager_types
+  field_user_manager_type: manager_types
   field_user_phone: user_phone
 destination:
   plugin: entity:user

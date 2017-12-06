@@ -1,0 +1,71 @@
+uuid: 1755e342-efd3-4914-956b-5c25425ee238
+id: jcl_user_animals
+label: 'User (Favoriate Animal Images)'
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+migration_group: jcl
+source:
+  constants:
+    file_dest_uri: 'public://images'
+  plugin: csv
+  path: '/var/www/html/drupal/modules/migrate_jcl/data/user_animal.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - id
+  column_names:
+    0:
+      id: 'id'
+    1:
+      uid: 'User ID'
+    2:
+      fid: 'File ID'
+    3:
+      file_name: 'File name'
+    4:
+      mime_type: 'MIME Type'
+    5:
+      file_size: 'File size'
+    6:
+      timestamp: 'Time Stamp'
+    7:
+      file_type: 'Drupal File Type'
+    8:
+      file_path: 'Source path'
+process:
+  fid: fid
+  uid: uid
+  filename: file_name
+  filemime: mime_type
+  filesize: file_size
+  status:
+    plugin: default_value
+    default_value: 1
+  created: timestamp
+  changed: timestamp
+  file_dest:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/file_dest_uri
+        - file_name
+    -
+      plugin: urlencode
+  uri:
+    plugin: file_copy
+    source:
+      - file_path
+      - '@file_dest'
+destination:
+  plugin: 'entity:file'
+migration_dependencies:
+  required: {  }
+  optional: {  }

@@ -1,0 +1,58 @@
+uuid: d19e2c3a-ec02-4ad0-bb2e-51ba57d9c2f1
+id: jcl_node_board_bundle
+label: 'Nodes (Board Bundle)'
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+migration_group: jcl
+source:
+  plugin: csv
+  path: '/var/www/html/drupal/modules/migrate_jcl/data/boardbundle.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - id
+  column_names:
+    0:
+      id: 'id'
+    1:
+      title: 'title'
+    2:
+      body: 'body'
+    3:
+      report_date: 'report_date'
+    4:
+      report_type: 'report_type'
+    5:
+      uid: 'uid'
+    6:
+      status: 'status'
+    7:
+      fileid: 'fileid'
+    8:
+      file_display: 'file_display'
+    9:
+      file_desc: 'file_desc'
+process:
+  title: title
+  uid: uid
+  status: status
+  'field_report_date/value': report_date
+  'field_file_pdf/target_id': fileid
+  'field_file_pdf/display': file_display
+  'field_file_pdf/description': file_desc
+  field_report_type:
+    process:
+      value: report_type
+destination:
+  plugin: 'entity:node'
+  default_bundle: board_report
+migration_dependencies:
+  required: {  }
+  optional: {  }

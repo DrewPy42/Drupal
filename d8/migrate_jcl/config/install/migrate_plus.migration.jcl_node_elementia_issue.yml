@@ -1,0 +1,60 @@
+uuid: 2a483e25-e74c-4dad-b8e6-4fbde1efb00e
+id: jcl_node_elementia_issue
+label: 'Nodes (Elementia Issues)'
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+migration_group: jcl
+source:
+  plugin: csv
+  path: '/var/www/html/drupal/modules/migrate_jcl/data/elementia.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - id
+  column_names:
+    0:
+      id: 'id'
+    1:
+      title: 'title'
+    2:
+      uid: 'uid'
+    3:
+      body: 'Body'
+    4:
+      caption: 'caption'
+    5:
+      fileid: 'fileid'
+    6:
+      file_display: 'file_display'
+    7:
+      file_desc: 'file_desc'
+    8:
+      image_id: 'image_id'
+    9:
+      alt: 'alt'
+    10:
+      width: 'width'
+    11:
+      height: 'height'
+process:
+  title: title
+  uid: uid
+  'field_image/target_id': image_id
+  'field_image/alt': alt
+  'field_file_pdf/target_id': fileid
+  'field_file_pdf/display': file_display
+  'field_file_pdf/description': file_desc
+  field_image_caption: caption
+destination:
+  plugin: 'entity:node'
+  default_bundle: elementia_issue
+migration_dependencies:
+  required: {  }
+  optional: {  }

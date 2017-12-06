@@ -63,6 +63,13 @@ process:
         plugin: migration_lookup
         migration: d7_field_collection_field_educator_list
         source: revision_id
+      bundle:
+        plugin: default_value
+        default_value: for_educators
+      entity_id: entity_id
+      revision_id: vid
+      deleted: archived
+      delta: delta
   'path/pathauto': 
     plugin: default_value
     default_value: 0 # Disable pathauto.

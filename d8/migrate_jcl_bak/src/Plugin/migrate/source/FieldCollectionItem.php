@@ -74,6 +74,8 @@ class FieldCollectionItem extends FieldableEntity {
       'field_name' => $this->t('Name of field'),
       'entity_type' => $this->t('Host entity type'),
       'entity_id' => $this->t('Host entity ID'),
+      'delta' => $this->t('Delta value'),
+      'archived' => $this->t('Whether the item was deleted'),
     );
     return $fields;
   }

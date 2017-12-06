@@ -90,14 +90,6 @@ process:
       title: title
       width: width
       height: height
-  field_phone:
-    plugin: iterator
-    source: field_phone
-    process:
-      format:
-        plugin: default_value
-        default_value: plain_text
-      value: value
   field_location_map_code:
     plugin: iterator
     source: field_google_map_code

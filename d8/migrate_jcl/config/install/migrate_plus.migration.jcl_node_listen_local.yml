@@ -1,0 +1,125 @@
+uuid: 7ae589c2-7d2c-450d-a2dc-c193a8fbbbd6
+id: jcl_node_listen_local
+label: 'Nodes (Listen Local)'
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_jcl
+  enforced:
+    module:
+      - migrate_jcl
+migration_group: jcl
+source:
+  plugin: csv
+  path: '/var/www/html/drupal/modules/migrate_jcl/data/listen_local.csv'
+  delimiter: ','
+  enclosure: '"'
+  constants:
+    slash: '/'
+  header_row_count: 1
+  keys:
+    - id
+  column_names:
+    0:
+      id: 'id'
+    1:
+      vid: 'vid'
+    2:
+      title: 'title'
+    3:
+      body: 'Body'
+    4:
+      live: 'Listen Local Live'
+    5:
+      uid: 'User ID'
+    6:
+      status: 'Status'
+    7:
+      created: 'Created'
+    8:
+      changed: 'Changed'
+    9:
+      promote: 'Promoted'
+    10:
+      sticky: 'Sticky'
+    11:
+      blog_categories: 'Categories'
+    12:
+      blog_tags: 'Tags'
+    13:
+      blog_type: 'Blog Type'
+    14:
+      audience: 'Audience'
+    15:
+      path: 'Alias URL'
+    16:
+      website_url: 'Website URL'
+    17:
+      website_title: 'Website title'
+process:
+  nid: id
+  vid: vid
+  title: title
+  'body/format':
+    plugin: default_value
+    default_value: "full_html"
+  'body/value': body
+  live: live
+  uid: uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  field_url:
+    plugin: sub_process
+    process:
+      uri: website_url
+      title: website_title
+  field_audience:
+    process:
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: audience
+      value_key: name
+      source: audience
+  _prepare_categories:
+    plugin: explode
+    source: blog_categories
+    delimiter: '|'
+  _prepare_tags:
+    source: blog_tags
+    delimiter: '|'
+    plugin: explode
+  field_blog_categories‎:
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: blog_category
+      value_key: name
+      source: '@_prepare_categories'
+
+  field_blog_tags:
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: blog_tags
+      value_key: name
+      source: '@_prepare_tags'
+  field_blog_type:
+    process:
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: blog_type
+      value_key: name
+      source: blog_type
+destination:
+  plugin: 'entity:node'
+  default_bundle: blog
+migration_dependencies:
+  required: {  }

@@ -1,0 +1,119 @@
+$view = new view();
+$view->name = 'csv_file_info';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'node';
+$view->human_name = 'CSV File Info';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'role';
+$handler->display->display_options['access']['role'] = array(
+  3 => '3',
+);
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'full';
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['row_plugin'] = 'fields';
+/* Relationship: Content: Local Music Content (field_local_music_content) */
+$handler->display->display_options['relationships']['field_local_music_content_value']['id'] = 'field_local_music_content_value';
+$handler->display->display_options['relationships']['field_local_music_content_value']['table'] = 'field_data_field_local_music_content';
+$handler->display->display_options['relationships']['field_local_music_content_value']['field'] = 'field_local_music_content_value';
+$handler->display->display_options['relationships']['field_local_music_content_value']['delta'] = '-1';
+/* Relationship: Field: Image with caption (field_image_with_caption) */
+$handler->display->display_options['relationships']['field_image_with_caption_value']['id'] = 'field_image_with_caption_value';
+$handler->display->display_options['relationships']['field_image_with_caption_value']['table'] = 'field_data_field_image_with_caption';
+$handler->display->display_options['relationships']['field_image_with_caption_value']['field'] = 'field_image_with_caption_value';
+$handler->display->display_options['relationships']['field_image_with_caption_value']['relationship'] = 'field_local_music_content_value';
+$handler->display->display_options['relationships']['field_image_with_caption_value']['delta'] = '-1';
+/* Relationship: Field collection item: Image (field_caption_image:fid) */
+$handler->display->display_options['relationships']['field_caption_image_fid']['id'] = 'field_caption_image_fid';
+$handler->display->display_options['relationships']['field_caption_image_fid']['table'] = 'field_data_field_caption_image';
+$handler->display->display_options['relationships']['field_caption_image_fid']['field'] = 'field_caption_image_fid';
+$handler->display->display_options['relationships']['field_caption_image_fid']['relationship'] = 'field_image_with_caption_value';
+/* Field: Global: View result counter */
+$handler->display->display_options['fields']['counter']['id'] = 'counter';
+$handler->display->display_options['fields']['counter']['table'] = 'views';
+$handler->display->display_options['fields']['counter']['field'] = 'counter';
+$handler->display->display_options['fields']['counter']['label'] = 'id';
+$handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['counter']['counter_start'] = '1';
+$handler->display->display_options['fields']['counter']['reverse'] = 0;
+/* Field: Content: Author uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'node';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['label'] = 'uid';
+/* Field: File: File ID */
+$handler->display->display_options['fields']['fid']['id'] = 'fid';
+$handler->display->display_options['fields']['fid']['table'] = 'file_managed';
+$handler->display->display_options['fields']['fid']['field'] = 'fid';
+$handler->display->display_options['fields']['fid']['relationship'] = 'field_caption_image_fid';
+$handler->display->display_options['fields']['fid']['label'] = 'fid';
+$handler->display->display_options['fields']['fid']['element_label_colon'] = FALSE;
+/* Field: File: Name */
+$handler->display->display_options['fields']['filename']['id'] = 'filename';
+$handler->display->display_options['fields']['filename']['table'] = 'file_managed';
+$handler->display->display_options['fields']['filename']['field'] = 'filename';
+$handler->display->display_options['fields']['filename']['relationship'] = 'field_caption_image_fid';
+$handler->display->display_options['fields']['filename']['label'] = 'file_name';
+$handler->display->display_options['fields']['filename']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['filename']['link_to_file'] = FALSE;
+/* Field: File: Mime type */
+$handler->display->display_options['fields']['filemime']['id'] = 'filemime';
+$handler->display->display_options['fields']['filemime']['table'] = 'file_managed';
+$handler->display->display_options['fields']['filemime']['field'] = 'filemime';
+$handler->display->display_options['fields']['filemime']['relationship'] = 'field_caption_image_fid';
+$handler->display->display_options['fields']['filemime']['label'] = 'mime_type';
+$handler->display->display_options['fields']['filemime']['element_label_colon'] = FALSE;
+/* Field: File: Size */
+$handler->display->display_options['fields']['filesize']['id'] = 'filesize';
+$handler->display->display_options['fields']['filesize']['table'] = 'file_managed';
+$handler->display->display_options['fields']['filesize']['field'] = 'filesize';
+$handler->display->display_options['fields']['filesize']['relationship'] = 'field_caption_image_fid';
+$handler->display->display_options['fields']['filesize']['label'] = 'file_size';
+$handler->display->display_options['fields']['filesize']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['filesize']['file_size_display'] = 'bytes';
+/* Field: File: Upload date */
+$handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['table'] = 'file_managed';
+$handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['relationship'] = 'field_caption_image_fid';
+$handler->display->display_options['fields']['timestamp']['label'] = 'timestamp';
+$handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+$handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'U';
+$handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+/* Field: File: Type */
+$handler->display->display_options['fields']['type']['id'] = 'type';
+$handler->display->display_options['fields']['type']['table'] = 'file_managed';
+$handler->display->display_options['fields']['type']['field'] = 'type';
+$handler->display->display_options['fields']['type']['relationship'] = 'field_caption_image_fid';
+$handler->display->display_options['fields']['type']['label'] = 'type';
+$handler->display->display_options['fields']['type']['machine_name'] = 0;
+/* Field: File: Path */
+$handler->display->display_options['fields']['uri']['id'] = 'uri';
+$handler->display->display_options['fields']['uri']['table'] = 'file_managed';
+$handler->display->display_options['fields']['uri']['field'] = 'uri';
+$handler->display->display_options['fields']['uri']['relationship'] = 'field_caption_image_fid';
+$handler->display->display_options['fields']['uri']['label'] = 'file_path';
+$handler->display->display_options['fields']['uri']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['uri']['file_download_path'] = TRUE;
+/* Filter criterion: File: File ID */
+$handler->display->display_options['filters']['fid']['id'] = 'fid';
+$handler->display->display_options['filters']['fid']['table'] = 'file_managed';
+$handler->display->display_options['filters']['fid']['field'] = 'fid';
+$handler->display->display_options['filters']['fid']['relationship'] = 'field_caption_image_fid';
+$handler->display->display_options['filters']['fid']['operator'] = 'not empty';
+
+/* Display: Listen Local Images */
+$handler = $view->new_display('views_data_export', 'Listen Local Images', 'csv_listen_local_images');
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+$handler->display->display_options['path'] = 'export/listen_local_images.csv';
